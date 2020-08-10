@@ -17,5 +17,9 @@ extension UIColor {
         
         /// 74 represents value in a grayscale from 0 to 255
         public static let gray74 = UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1)
+        
+        /// 43 represents value in a grayscale from 0 to 255
+        public static let gray43 = UIColor(red: 0.169, green: 0.169, blue: 0.169, alpha: 1)
+        
     }
 }

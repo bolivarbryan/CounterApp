@@ -1,17 +1,15 @@
-//
-//  ViewController.swift
-//  Counters
-//
-//  Created by Bryan Bolivar on 9/08/20.
-//
-
 import UIKit
 import Components
 
+/// Guide Information which contains relevant information for new users
 struct WelcomeGuideInfo {
+    /// Image icon for guide info
     let image: Image
+    /// Background color
     let color: UIColor
+    /// Title text for guide info
     let title: Language.Welcome
+    /// Description text for guide info
     let body: Language.Welcome
 }
 
@@ -20,13 +18,24 @@ class ViewController: UIViewController {
         WelcomeGuideInfo(image: .number(value: 42), color: UIColor.Pallete.red , title: .addAlmostAnything , body: .addAlmostAnythingValue),
         WelcomeGuideInfo(image: .people, color: UIColor.Pallete.yellow , title: .countToSelf , body: .countToSelfValue),
         WelcomeGuideInfo(image: .lightBulb, color: UIColor.Pallete.green , title: .countYourToughts , body: .countYourToughtsValue),
-        
     ]
     
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.text = Language.Welcome.title.localizedValue
             titleLabel.configureAsTitle()
+            
+            let string_to_color = "Counters"
+            let main_string = Language.Welcome.title.localizedValue
+            let range = (main_string as NSString).range(of: string_to_color)
+
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 7
+            let attribute = NSMutableAttributedString.init(string: main_string)
+            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.Pallete.tintColor , range: range)
+            attribute.addAttribute(.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, main_string.count - 1 ))
+
+            titleLabel.attributedText = attribute
         }
     }
     

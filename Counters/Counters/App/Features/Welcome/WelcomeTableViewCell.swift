@@ -19,6 +19,13 @@ class WelcomeTableViewCell: UITableViewCell {
             titleLabel.text = info.title.localizedValue
             bodyLabel.text = info.body.localizedValue
             iconImageView.configure(image: info.image, color: info.color)
+            
+            let main_string = info.body.localizedValue
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 2
+            let attribute = NSMutableAttributedString.init(string: main_string)
+            attribute.addAttribute(.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, main_string.count - 1 ))
+            bodyLabel.attributedText = attribute
         }
     }
     
@@ -31,6 +38,7 @@ class WelcomeTableViewCell: UITableViewCell {
     @IBOutlet weak var bodyLabel: UILabel! {
         didSet {
             bodyLabel.configureAsBody()
+            bodyLabel.textColor = UIColor.Pallete.gray43
         }
     }
     

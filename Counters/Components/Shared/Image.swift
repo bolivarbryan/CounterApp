@@ -13,26 +13,31 @@ public enum Image {
     case minus
     case plus
     
+    ///UIImage representation of Image cases in a type-safe style
     var imageRepresentation: UIImage {
+        let name: String
         switch self {
         case .number(let value):
-            return UIImage(systemName: "\(value).circle.fill")!
+            name = "\(value).circle.fill"
+            return UIImage(systemName: name,
+                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))!
         case .people:
-            return UIImage(systemName: "person.2.fill")!
+            name = "person.2.fill"
         case .lightBulb:
-            return UIImage(systemName: "lightbulb.fill")!
+            name = "lightbulb.fill"
         case .trash:
-            return UIImage(systemName: "trash")!
+            name = "trash"
         case .share:
-            return UIImage(systemName: "square.and.arrow.up")!
+            name = "square.and.arrow.up"
         case .circle:
-            return UIImage(systemName: "circle")!
+            name = "circle"
         case .circleCheckMark:
-            return UIImage(systemName: "checkmark.circle")!
+            name = "checkmark.circle"
         case .minus:
-            return UIImage(systemName: "minus")!
+            name = "minus"
         case .plus:
-            return UIImage(systemName: "plus")!
+            name = "plus"
         }
+        return UIImage(systemName: name)!
     }
 }

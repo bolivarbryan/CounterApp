@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Counters
+
+  Created by Bryan Bolivar on 9/08/20.
+  
+*/
+
+/* Welcome Screen */
+"welcome.title" = "Welcome to\nCounters";
+"welcome.subtitle" = "An example app that syncs to a Node.js server running on your Mac.";
+"welcome.addAlmostAnything" = "Add almost anything";
+"welcome.addAlmostAnythingValue" = "Capture cups of lattes, frapuccinos, or anything else that can be counted.";
+"welcome.countToSelf" = "Count to self, or with anyone";
+"welcome.countToSelfValue" = "Others can view or make changes. There’s no authentication API.";
+"welcome.countYourToughts" = "Count your thoughts";
+"welcome.countYourToughtsValue" = "Possibilities are literally endless.";
+"welcome.continueButton" = "Continue";

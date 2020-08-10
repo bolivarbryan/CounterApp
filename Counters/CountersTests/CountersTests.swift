@@ -6,28 +6,41 @@
 //
 
 import XCTest
+import UIKit
 @testable import Counters
 
 class CountersTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testLanguageTranslation_ShouldLocalizeWelcometitle() {
+        XCTAssertEqual(Language.Welcome.title.localizedValue, "Welcome to\nCounters")
+    }
+    
+    func testImageLocalization_ShouldLocalizeSystemImage() {
+        XCTAssertEqual(Image.lightBulb.imageRepresentation, UIImage(systemName: "lightbulb.fill"))
+        XCTAssertEqual(Image.people.imageRepresentation, UIImage(systemName: "person.2.fill"))
+        XCTAssertEqual(Image.trash.imageRepresentation, UIImage(systemName: "trash"))
+        XCTAssertEqual(Image.share.imageRepresentation, UIImage(systemName: "square.and.arrow.up"))
+        XCTAssertEqual(Image.circle.imageRepresentation, UIImage(systemName: "circle"))
+        XCTAssertEqual(Image.minus.imageRepresentation, UIImage(systemName: "minus"))
+        XCTAssertEqual(Image.plus.imageRepresentation, UIImage(systemName: "plus"))
+        XCTAssertEqual(Image.circleCheckMark.imageRepresentation, UIImage(systemName: "checkmark.circle"))
+    }
+    
+    func testImageLocalization_ShouldLocalizeNumberWithCircle() {
+        XCTAssertEqual(Image.number(value: 42).imageRepresentation, UIImage(systemName: "42.circle.fill"))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testTitleFont_IsHeavyWeight() {
+        XCTAssertEqual(UIFont.CounterFont.title.fontName, ".SFUI-Heavy")
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testBodyFont_IsRegularFont() {
+        XCTAssertEqual(UIFont.CounterFont.body.fontName, ".SFUI-Regular")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testLargeButtonSetup() {
+        let button = UIButton(frame: .zero)
+        button.configureButtonStyle(size: .small)
+        XCTAssertEqual(button.backgroundColor, UIColor.Pallete.tintColor)
     }
-
 }

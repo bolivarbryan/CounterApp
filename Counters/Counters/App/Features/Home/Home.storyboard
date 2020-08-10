@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="phR-O2-1cN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="htu-PP-0aU">
+            <objects>
+                <viewController id="bfg-pB-bxL" customClass="HomeViewController" customModule="Counters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uEI-U0-NRF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PNK-pS-TMq">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellID" rowHeight="47" id="YZh-yE-Wtz">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="47"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YZh-yE-Wtz" id="Lth-lJ-45s">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bfg-pB-bxL" id="8zW-3t-M77"/>
+                                    <outlet property="delegate" destination="bfg-pB-bxL" id="D3S-cQ-bTA"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gs5-y6-siC" customClass="CounterToolBar" customModule="Counters" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="W9x-Pk-pUn"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Eyy-lO-uOv"/>
+                                    <barButtonItem title="4 items · Counted 16 times" id="Yop-8B-Yjx"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vu4-iC-cNu"/>
+                                    <barButtonItem systemItem="add" id="OOG-Bf-63L"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1p5-ug-Hrf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PNK-pS-TMq" firstAttribute="top" secondItem="1p5-ug-Hrf" secondAttribute="top" id="3mC-fE-CBE"/>
+                            <constraint firstItem="1p5-ug-Hrf" firstAttribute="bottom" secondItem="PNK-pS-TMq" secondAttribute="bottom" id="MzX-pk-Obi"/>
+                            <constraint firstItem="1p5-ug-Hrf" firstAttribute="bottom" secondItem="gs5-y6-siC" secondAttribute="bottom" id="b6R-ug-3NR"/>
+                            <constraint firstItem="1p5-ug-Hrf" firstAttribute="trailing" secondItem="PNK-pS-TMq" secondAttribute="trailing" id="dv2-Mj-mxO"/>
+                            <constraint firstItem="PNK-pS-TMq" firstAttribute="leading" secondItem="1p5-ug-Hrf" secondAttribute="leading" id="elj-FJ-rkL"/>
+                            <constraint firstItem="gs5-y6-siC" firstAttribute="leading" secondItem="1p5-ug-Hrf" secondAttribute="leading" id="oMs-kW-9X3"/>
+                            <constraint firstItem="gs5-y6-siC" firstAttribute="trailing" secondItem="1p5-ug-Hrf" secondAttribute="trailing" id="vhh-Si-l4l"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="oCN-vX-EBQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="PNK-pS-TMq" id="4Y7-5h-bxn"/>
+                        <outlet property="toolBar" destination="gs5-y6-siC" id="ubi-Fs-NIN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AdS-mT-i5h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1384.0579710144928" y="-65.625"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="AgP-mX-YOd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="phR-O2-1cN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="dtj-uP-wVb"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FBE-dV-ugY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bfg-pB-bxL" kind="relationship" relationship="rootViewController" id="FUs-7Q-QZB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZO4-6D-H4b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473.91304347826093" y="-65.625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

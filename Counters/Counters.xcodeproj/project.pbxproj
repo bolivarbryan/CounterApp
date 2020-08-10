@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61204D1324E13C45004B4FA4 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61204D1224E13C45004B4FA4 /* Counter.swift */; };
+		61204D1724E13F4D004B4FA4 /* EmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61204D1524E13F4D004B4FA4 /* EmptyStateView.xib */; };
+		61204D1B24E141CD004B4FA4 /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61204D1A24E141CD004B4FA4 /* EmptyStateViewController.swift */; };
+		61204D1E24E1515C004B4FA4 /* CounterToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61204D1D24E1515C004B4FA4 /* CounterToolBar.swift */; };
 		6162D09824E0FC7500E49B45 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6162D09724E0FC7500E49B45 /* AppDelegateTests.swift */; };
 		6162D0CA24E0FE5600E49B45 /* Components.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6162D0C124E0FE5500E49B45 /* Components.framework */; };
 		6162D0D124E0FE5600E49B45 /* ComponentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6162D0D024E0FE5600E49B45 /* ComponentsTests.swift */; };
@@ -31,9 +35,10 @@
 		6162D10224E11EA500E49B45 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6162D0F624E11DD900E49B45 /* SF-Pro-Display-Regular.otf */; };
 		6162D10324E11EA500E49B45 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6162D0F524E11DD900E49B45 /* SF-Pro-Display-Medium.otf */; };
 		6162D10424E11EA500E49B45 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6162D0F724E11DD900E49B45 /* SF-Pro-Display-Bold.otf */; };
+		6162D10724E1306400E49B45 /* WelcomeGuideInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6162D10624E1306400E49B45 /* WelcomeGuideInfo.swift */; };
 		618780C124E0CF5C00ED6184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780C024E0CF5C00ED6184 /* AppDelegate.swift */; };
 		618780C324E0CF5C00ED6184 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780C224E0CF5C00ED6184 /* SceneDelegate.swift */; };
-		618780C524E0CF5C00ED6184 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780C424E0CF5C00ED6184 /* ViewController.swift */; };
+		618780C524E0CF5C00ED6184 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780C424E0CF5C00ED6184 /* WelcomeViewController.swift */; };
 		618780C824E0CF5C00ED6184 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 618780C624E0CF5C00ED6184 /* Main.storyboard */; };
 		618780CB24E0CF5C00ED6184 /* Counters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 618780C924E0CF5C00ED6184 /* Counters.xcdatamodeld */; };
 		618780CD24E0CF5D00ED6184 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618780CC24E0CF5D00ED6184 /* Assets.xcassets */; };
@@ -41,6 +46,8 @@
 		618780DB24E0CF5D00ED6184 /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780DA24E0CF5D00ED6184 /* CountersTests.swift */; };
 		618780E624E0CF5D00ED6184 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780E524E0CF5D00ED6184 /* CountersUITests.swift */; };
 		618780FE24E0D0B700ED6184 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 618780FD24E0D0B700ED6184 /* Localizable.strings */; };
+		61B874F224E1332400AB845A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B874F124E1332400AB845A /* Home.storyboard */; };
+		61B874F424E1378800AB845A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B874F324E1378800AB845A /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +103,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		61204D1224E13C45004B4FA4 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		61204D1524E13F4D004B4FA4 /* EmptyStateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyStateView.xib; sourceTree = "<group>"; };
+		61204D1A24E141CD004B4FA4 /* EmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyStateViewController.swift; path = Counters/App/Features/Components/EmptyState/EmptyStateViewController.swift; sourceTree = SOURCE_ROOT; };
+		61204D1D24E1515C004B4FA4 /* CounterToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToolBar.swift; sourceTree = "<group>"; };
 		6162D09724E0FC7500E49B45 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		6162D0C124E0FE5500E49B45 /* Components.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Components.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6162D0C324E0FE5500E49B45 /* Components.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Components.h; sourceTree = "<group>"; };
@@ -116,10 +127,11 @@
 		6162D0F624E11DD900E49B45 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		6162D0F724E11DD900E49B45 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		6162D0F824E11DDA00E49B45 /* SF-Pro-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Heavy.otf"; sourceTree = "<group>"; };
+		6162D10624E1306400E49B45 /* WelcomeGuideInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeGuideInfo.swift; sourceTree = "<group>"; };
 		618780BD24E0CF5B00ED6184 /* Counters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618780C024E0CF5C00ED6184 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		618780C224E0CF5C00ED6184 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		618780C424E0CF5C00ED6184 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		618780C424E0CF5C00ED6184 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		618780C724E0CF5C00ED6184 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		618780CA24E0CF5C00ED6184 /* Counters.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Counters.xcdatamodel; sourceTree = "<group>"; };
 		618780CC24E0CF5D00ED6184 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +144,8 @@
 		618780E524E0CF5D00ED6184 /* CountersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersUITests.swift; sourceTree = "<group>"; };
 		618780E724E0CF5D00ED6184 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		618780FD24E0D0B700ED6184 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		61B874F124E1332400AB845A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		61B874F324E1378800AB845A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +189,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61204D1C24E15145004B4FA4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				61204D1F24E15186004B4FA4 /* EmptyState */,
+				61204D1D24E1515C004B4FA4 /* CounterToolBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		61204D1F24E15186004B4FA4 /* EmptyState */ = {
+			isa = PBXGroup;
+			children = (
+				61204D1524E13F4D004B4FA4 /* EmptyStateView.xib */,
+				61204D1A24E141CD004B4FA4 /* EmptyStateViewController.swift */,
+			);
+			path = EmptyState;
+			sourceTree = "<group>";
+		};
 		6162D0C224E0FE5500E49B45 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +244,7 @@
 		6162D0ED24E1038300E49B45 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				6162D10524E1305700E49B45 /* Models */,
 				6162D0EE24E1039300E49B45 /* Features */,
 			);
 			path = App;
@@ -220,6 +253,8 @@
 		6162D0EE24E1039300E49B45 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				61204D1C24E15145004B4FA4 /* Components */,
+				61B874F024E1330D00AB845A /* Home */,
 				6162D0EF24E1039900E49B45 /* Welcome */,
 			);
 			path = Features;
@@ -228,6 +263,8 @@
 		6162D0EF24E1039900E49B45 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
+				618780C624E0CF5C00ED6184 /* Main.storyboard */,
+				618780C424E0CF5C00ED6184 /* WelcomeViewController.swift */,
 				6162D0F024E103AE00E49B45 /* WelcomeTableViewCell.swift */,
 			);
 			path = Welcome;
@@ -251,6 +288,15 @@
 				6162D0F424E11DD900E49B45 /* SF-Pro-Display-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6162D10524E1305700E49B45 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6162D10624E1306400E49B45 /* WelcomeGuideInfo.swift */,
+				61204D1224E13C45004B4FA4 /* Counter.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		618780B424E0CF5B00ED6184 = {
@@ -283,8 +329,6 @@
 				6162D0ED24E1038300E49B45 /* App */,
 				618780C024E0CF5C00ED6184 /* AppDelegate.swift */,
 				618780C224E0CF5C00ED6184 /* SceneDelegate.swift */,
-				618780C424E0CF5C00ED6184 /* ViewController.swift */,
-				618780C624E0CF5C00ED6184 /* Main.storyboard */,
 				618780CC24E0CF5D00ED6184 /* Assets.xcassets */,
 				618780CE24E0CF5D00ED6184 /* LaunchScreen.storyboard */,
 				618780D124E0CF5D00ED6184 /* Info.plist */,
@@ -311,6 +355,15 @@
 				618780E724E0CF5D00ED6184 /* Info.plist */,
 			);
 			path = CountersUITests;
+			sourceTree = "<group>";
+		};
+		61B874F024E1330D00AB845A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				61B874F124E1332400AB845A /* Home.storyboard */,
+				61B874F324E1378800AB845A /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,8 +548,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6162D10324E11EA500E49B45 /* SF-Pro-Display-Medium.otf in Resources */,
+				61B874F224E1332400AB845A /* Home.storyboard in Resources */,
 				618780D024E0CF5D00ED6184 /* LaunchScreen.storyboard in Resources */,
 				6162D10424E11EA500E49B45 /* SF-Pro-Display-Bold.otf in Resources */,
+				61204D1724E13F4D004B4FA4 /* EmptyStateView.xib in Resources */,
 				618780FE24E0D0B700ED6184 /* Localizable.strings in Resources */,
 				6162D10024E11EA500E49B45 /* SF-Pro-Display-Semibold.otf in Resources */,
 				618780CD24E0CF5D00ED6184 /* Assets.xcassets in Resources */,
@@ -549,11 +604,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61204D1324E13C45004B4FA4 /* Counter.swift in Sources */,
 				618780CB24E0CF5C00ED6184 /* Counters.xcdatamodeld in Sources */,
 				6162D0F124E103AE00E49B45 /* WelcomeTableViewCell.swift in Sources */,
-				618780C524E0CF5C00ED6184 /* ViewController.swift in Sources */,
+				618780C524E0CF5C00ED6184 /* WelcomeViewController.swift in Sources */,
 				618780C124E0CF5C00ED6184 /* AppDelegate.swift in Sources */,
+				61204D1B24E141CD004B4FA4 /* EmptyStateViewController.swift in Sources */,
+				61204D1E24E1515C004B4FA4 /* CounterToolBar.swift in Sources */,
 				618780C324E0CF5C00ED6184 /* SceneDelegate.swift in Sources */,
+				61B874F424E1378800AB845A /* HomeViewController.swift in Sources */,
+				6162D10724E1306400E49B45 /* WelcomeGuideInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

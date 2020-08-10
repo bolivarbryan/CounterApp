@@ -56,4 +56,12 @@ class ComponentsTests: XCTestCase {
         label.validateDebugMode()
         XCTAssertEqual(label.backgroundColor, .clear)
     }
+    
+    func testLabelAttributesPersistsPlainText() {
+        let label = UILabel(frame: .zero)
+        label.text = "Testing"
+        label.configureAsBody()
+        XCTAssertEqual(label.attributedText?.string, "Testing")
+
+    }
 }

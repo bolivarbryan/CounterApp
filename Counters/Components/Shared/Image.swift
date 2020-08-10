@@ -14,7 +14,7 @@ public enum Image {
     case plus
     
     ///UIImage representation of Image cases in a type-safe style
-    var imageRepresentation: UIImage {
+    public var imageRepresentation: UIImage {
         let name: String
         switch self {
         case .number(let value):

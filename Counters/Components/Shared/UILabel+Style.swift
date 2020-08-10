@@ -23,6 +23,19 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
         numberOfLines = 0
         textColor = UIColor.Pallete.gray74
+        
+        guard let value = text,
+              !value.isEmpty
+              else { return }
+        
+        let string = value
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 2
+        
+        let attribute = NSMutableAttributedString.init(string: string)
+        attribute.addAttribute(.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, string.count - 1 ))
+        attributedText = attribute
+        
         validateDebugMode()
     }
     
@@ -31,6 +44,7 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
         numberOfLines = 0
         textColor = .black
+
         validateDebugMode()
     }
     

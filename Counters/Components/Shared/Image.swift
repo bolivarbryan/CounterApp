@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 /// Represents the authorized icons in app
-enum Image {
+public enum Image {
     case number(value: Int)
     case people
     case lightBulb

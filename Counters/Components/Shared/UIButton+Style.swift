@@ -10,7 +10,7 @@ import UIKit
 
 extension UIButton {
     ///Defines button size behavior
-    enum Size {
+    public enum Size {
         ///Large buttons contains a longer drop shadow
         case large
         
@@ -18,7 +18,7 @@ extension UIButton {
         case small
     }
     
-    func configureButtonStyle(size: Size) {
+    public func configureButtonStyle(size: Size) {
         backgroundColor = UIColor.Pallete.tintColor
         layer.cornerRadius = 8
         titleLabel?.font = UIFont.CounterFont.bodyTitle

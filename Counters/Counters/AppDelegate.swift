@@ -11,10 +11,8 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        UserDefaults.standard.setValue(ProcessInfo.processInfo.environment["debug_mode"], forKey: "debug_mode")
         return true
     }
 

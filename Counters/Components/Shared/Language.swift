@@ -1,9 +1,9 @@
 import Foundation
 
-enum Language {
+public enum Language {
     
     ///Contains all the copy texts used on Welcome Screen
-    enum Welcome: String, Localizable, CaseIterable {
+    public enum Welcome: String, Localizable, CaseIterable {
         case title
         case subtitle
         case addAlmostAnything
@@ -18,7 +18,7 @@ enum Language {
             return "welcome"
         }
         
-        var localizedValue: String {
+        public var localizedValue: String {
             let key = "\(sectionName).\(self.rawValue)"
             return NSLocalizedString(key, comment: key)
         }

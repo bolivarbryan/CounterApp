@@ -3,7 +3,6 @@
 //  CountersTests
 //
 //  Created by Bryan Bolivar on 9/08/20.
-//  Copyright © 2020 Bryan Bolivar. All rights reserved.
 //
 
 import XCTest

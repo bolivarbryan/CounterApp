@@ -3,7 +3,6 @@
 //  CountersUITests
 //
 //  Created by Bryan Bolivar on 9/08/20.
-//  Copyright © 2020 Bryan Bolivar. All rights reserved.
 //
 
 import XCTest
@@ -35,7 +34,7 @@ class CountersUITests: XCTestCase {
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+            measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }
         }

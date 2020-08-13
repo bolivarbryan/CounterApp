@@ -16,13 +16,10 @@ extension UIColor {
         public static let darkSilver = UIColor(red: 0.533, green: 0.545, blue: 0.565, alpha: 1)
         
         /// 74 represents value in a grayscale from 0 to 255
-        public static let gray74 = UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1)
-        
-        /// 43 represents value in a grayscale from 0 to 255
-        public static let gray43 = UIColor(red: 0.169, green: 0.169, blue: 0.169, alpha: 1)
-        
-        /// 43 represents value in a grayscale from 0 to 255
-        public static let gray230 = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        public static let gray74 = UIColor(white: 0.29, alpha: 1)
+        public static let gray43 = UIColor(white: 0.169, alpha: 1)
+        public static let gray230 = UIColor(white: 0.9, alpha: 1)
+        public static let gray219 = UIColor(white: 0.86, alpha: 1)
         
     }
 }

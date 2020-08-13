@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 import Components
 
+protocol CounterToolBarDelegate {
+    func didSelectDelete()
+    func didSelectAdd()
+    func didSelectShare()
+}
+
 class CounterToolBar: UIToolbar {
     enum State {
         case deleteAndShare
@@ -22,6 +28,8 @@ class CounterToolBar: UIToolbar {
                                style: .plain,
                                target: self,
                                action: nil)
+    
+    var toolBarDelegate: CounterToolBarDelegate?
     
     var state: State  = .empty {
         didSet {

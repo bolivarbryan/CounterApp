@@ -8,10 +8,12 @@
 import Foundation
 
 class Counter {
+    var id: Int
     var title: String
     var value: Int
     
-    init(title: String = "", value: Int = 0) {
+    init(id: Int, title: String = "", value: Int = 0) {
+        self.id = id
         self.title = title
         self.value = value
     }

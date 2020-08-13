@@ -10,10 +10,20 @@ import Components
 
 class HomeViewController: UIViewController {
     
-    let datasource: [Counter] = [
-        Counter(title: "Push ups"),
-        Counter(title: "Water plants"),
-        Counter(title: "Visited Clients")
+    var datasource: [Counter] = [
+        Counter(id: 0, title: "Push ups", value: 100),
+        Counter(id: 1, title: "Water plants"),
+        Counter(id: 2, title: "Visited Clients"),
+        Counter(id: 3, title: "Visited Clients", value: 999),
+        Counter(id: 4, title: "Visited Clients"),
+        Counter(id: 5, title: "Visited Clients", value: 70),
+        Counter(id: 6, title: "Visited Clients"),
+        Counter(id: 7, title: "Water plants"),
+        Counter(id: 8, title: "Visited Clients"),
+        Counter(id: 9, title: "Visited Clients"),
+        Counter(id: 10, title: "Visited Clients"),
+        Counter(id: 11, title: "Visited Clients"),
+        Counter(id: 12, title: "Visited Clients")
     ]
     
     @IBOutlet weak var tableView: UITableView!
@@ -59,17 +69,23 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID")
-        cell?.textLabel?.text = datasource[indexPath.row].title
-        cell?.detailTextLabel?.text = String(datasource[indexPath.row].value)
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellID") as! CounterTableViewCell
+        cell.counter = datasource[indexPath.row]
+        cell.delegate = self
+        return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    
 }
 
 extension HomeViewController: EmptyStateDelegate {
@@ -89,7 +105,14 @@ extension HomeViewController: EmptyStateDelegate {
         return "Create a counter"
     }
     
-    
 }
 
 
+extension HomeViewController: CounterTableViewCellDelegate {
+    func counterValueDidUpdate(counter: Counter) {
+        print(counter)
+        
+        datasource[counter.id] = counter
+    }
+    
+}

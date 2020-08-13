@@ -44,7 +44,13 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
         numberOfLines = 0
         textColor = .black
-
+        validateDebugMode()
+    }
+    
+    public func configureAsCellLargeTitle(enabled: Bool) {
+        font = UIFont.CounterFont.cellLargeTitle
+        numberOfLines = 1
+        textColor = enabled ? UIColor.Pallete.tintColor : UIColor.Pallete.gray219
         validateDebugMode()
     }
     

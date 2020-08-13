@@ -48,6 +48,8 @@
 		618780FE24E0D0B700ED6184 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 618780FD24E0D0B700ED6184 /* Localizable.strings */; };
 		61B874F224E1332400AB845A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B874F124E1332400AB845A /* Home.storyboard */; };
 		61B874F424E1378800AB845A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B874F324E1378800AB845A /* HomeViewController.swift */; };
+		61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */; };
+		61E6C54324E4E35D00E4CC69 /* CounterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C54224E4E35D00E4CC69 /* CounterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		618780FD24E0D0B700ED6184 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		61B874F124E1332400AB845A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		61B874F324E1378800AB845A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Search.swift"; sourceTree = "<group>"; };
+		61E6C54224E4E35D00E4CC69 /* CounterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +248,7 @@
 		6162D0ED24E1038300E49B45 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				61E6C53E24E4E1BC00E4CC69 /* Extensions */,
 				6162D10524E1305700E49B45 /* Models */,
 				6162D0EE24E1039300E49B45 /* Features */,
 			);
@@ -360,10 +365,27 @@
 		61B874F024E1330D00AB845A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				61E6C54124E4E34900E4CC69 /* Views */,
 				61B874F124E1332400AB845A /* Home.storyboard */,
 				61B874F324E1378800AB845A /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		61E6C53E24E4E1BC00E4CC69 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		61E6C54124E4E34900E4CC69 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61E6C54224E4E35D00E4CC69 /* CounterTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -609,8 +631,10 @@
 				6162D0F124E103AE00E49B45 /* WelcomeTableViewCell.swift in Sources */,
 				618780C524E0CF5C00ED6184 /* WelcomeViewController.swift in Sources */,
 				618780C124E0CF5C00ED6184 /* AppDelegate.swift in Sources */,
+				61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */,
 				61204D1B24E141CD004B4FA4 /* EmptyStateViewController.swift in Sources */,
 				61204D1E24E1515C004B4FA4 /* CounterToolBar.swift in Sources */,
+				61E6C54324E4E35D00E4CC69 /* CounterTableViewCell.swift in Sources */,
 				618780C324E0CF5C00ED6184 /* SceneDelegate.swift in Sources */,
 				61B874F424E1378800AB845A /* HomeViewController.swift in Sources */,
 				6162D10724E1306400E49B45 /* WelcomeGuideInfo.swift in Sources */,

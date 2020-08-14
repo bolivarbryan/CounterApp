@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
     
     override var view: UIView! {
         didSet {
-            view.backgroundColor = UIColor.Pallete.backgroundColor
+            view.backgroundColor = UIColor.systemBackground
         }
     }
     
@@ -55,7 +55,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Language.Main.appName.localizedValue
-        configureNavigationBar()
         tableView.contentInset.bottom = 20
         toolBar.toolBarDelegate = self
     }
@@ -65,6 +64,7 @@ class HomeViewController: UIViewController {
         viewModel.loadData {
             self.state = .normal
         }
+        configureNavigationBar()
     }
     
     var editBtn: UIBarButtonItem {
@@ -171,6 +171,7 @@ class HomeViewController: UIViewController {
     /// Configures Navigation bar behavior including Search bar controller
     func configureNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         addSearchController(searchController: searchController)
     }
     

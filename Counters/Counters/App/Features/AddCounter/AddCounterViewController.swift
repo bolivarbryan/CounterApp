@@ -37,16 +37,32 @@ class AddCounterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        navigationItem.largeTitleDisplayMode = .never
+        state = .normal
+        
+        
+        let stringToUpdate = "examples"
+        let mainString = Language.CreateACounter.suggestionText.localizedValue
+        let range = (mainString as NSString).range(of: stringToUpdate)
+
+        let attribute = NSMutableAttributedString.init(string: mainString)
+        attribute.addAttribute(NSAttributedString.Key.underlineStyle, value: 1 , range: range)
+
+        seeExamplesButton.titleLabel?.attributedText = attribute
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        state = .normal
+        title = Language.CreateACounter.title.localizedValue
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        title = "Create"
     }
     
     func configureUI() {
-        title = Language.CreateACounter.title.localizedValue
-        view.backgroundColor = UIColor.Pallete.backgroundColor
         seeExamplesButton.titleLabel?.configureAsBody()
         seeExamplesButton.setTitle(Language.CreateACounter.suggestionText.localizedValue, for: .normal)
         seeExamplesButton.tintColor = UIColor.Pallete.darkSilver
@@ -76,6 +92,7 @@ class AddCounterViewController: UIViewController {
     }
     
     @IBAction func loadExamplesView(_ sender: Any) {
+        performSegue(withIdentifier: "ExampleSegue", sender: self)
     }
     
     @objc func saveCounter() {
@@ -124,14 +141,25 @@ class AddCounterViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ExampleSegue" {
+            let vc = segue.destination as! ExampleViewController
+            vc.delegate = self
+        }
     }
-    */
 
+
+}
+
+extension AddCounterViewController: ExampleViewDelegate {
+    func didSelectTitle(title: String) {
+        counterNameTextField.text = title
+        state = .content
+    }
+    
+    
 }

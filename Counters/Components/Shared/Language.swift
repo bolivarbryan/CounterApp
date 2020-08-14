@@ -77,6 +77,7 @@ public enum Language {
     public enum Examples: String, Localizable {
         case title
         case subtitle
+        case back
         
         public var sectionName: String {
             return "example.\(self.rawValue)"

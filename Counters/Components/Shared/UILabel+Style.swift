@@ -18,12 +18,12 @@ extension UILabel {
     }
     
     ///Transforms UILabel appearance to Body Style
-    public func configureAsBody() {
+    public func configureAsBody(alignment: NSTextAlignment = .left) {
         font = UIFont.CounterFont.body
         lineBreakMode = .byWordWrapping
         numberOfLines = 0
         textColor = UIColor.Pallete.gray74
-        
+        textAlignment = alignment
         guard let value = text,
               !value.isEmpty
               else { return }
@@ -44,6 +44,22 @@ extension UILabel {
         lineBreakMode = .byWordWrapping
         numberOfLines = 0
         textColor = .black
+        validateDebugMode()
+    }
+    
+    public func configureAsViewSubtitle() {
+        font = UIFont.CounterFont.tabBarTitle
+        numberOfLines = 0
+        textColor = UIColor.Pallete.gray74
+        textAlignment = .center
+        validateDebugMode()
+    }
+    
+    ///Transforms UILabel appearance to Title Style
+    public func configureAsCellSectionTitle() {
+        font = UIFont.CounterFont.cellSectionTitle
+        lineBreakMode = .byWordWrapping
+        numberOfLines = 0
         validateDebugMode()
     }
     

@@ -49,6 +49,11 @@
 		61A12D9624E699380037DCA4 /* AddCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12D9524E699380037DCA4 /* AddCounterViewController.swift */; };
 		61A12D9824E699440037DCA4 /* AddCounter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61A12D9724E699440037DCA4 /* AddCounter.storyboard */; };
 		61A12D9A24E6A0870037DCA4 /* AddCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12D9924E6A0870037DCA4 /* AddCounterViewModel.swift */; };
+		61A12D9D24E6A7DC0037DCA4 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12D9C24E6A7DC0037DCA4 /* ExampleViewController.swift */; };
+		61A12D9F24E6A8070037DCA4 /* ExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12D9E24E6A8070037DCA4 /* ExampleViewModel.swift */; };
+		61A12DA124E6A9900037DCA4 /* Examples.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61A12DA024E6A9900037DCA4 /* Examples.storyboard */; };
+		61A12DA424E6AB290037DCA4 /* ExampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12DA324E6AB290037DCA4 /* ExampleTableViewCell.swift */; };
+		61A12DA624E6AB380037DCA4 /* ExampleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12DA524E6AB380037DCA4 /* ExampleCollectionViewCell.swift */; };
 		61B874F224E1332400AB845A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B874F124E1332400AB845A /* Home.storyboard */; };
 		61B874F424E1378800AB845A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B874F324E1378800AB845A /* HomeViewController.swift */; };
 		61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */; };
@@ -153,6 +158,11 @@
 		61A12D9524E699380037DCA4 /* AddCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCounterViewController.swift; sourceTree = "<group>"; };
 		61A12D9724E699440037DCA4 /* AddCounter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddCounter.storyboard; sourceTree = "<group>"; };
 		61A12D9924E6A0870037DCA4 /* AddCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCounterViewModel.swift; sourceTree = "<group>"; };
+		61A12D9C24E6A7DC0037DCA4 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		61A12D9E24E6A8070037DCA4 /* ExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewModel.swift; sourceTree = "<group>"; };
+		61A12DA024E6A9900037DCA4 /* Examples.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Examples.storyboard; sourceTree = "<group>"; };
+		61A12DA324E6AB290037DCA4 /* ExampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTableViewCell.swift; sourceTree = "<group>"; };
+		61A12DA524E6AB380037DCA4 /* ExampleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewCell.swift; sourceTree = "<group>"; };
 		61B874F124E1332400AB845A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		61B874F324E1378800AB845A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Search.swift"; sourceTree = "<group>"; };
@@ -265,6 +275,7 @@
 		6162D0EE24E1039300E49B45 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				61A12D9B24E6A7C60037DCA4 /* ExampleCounter */,
 				61A12D9424E699230037DCA4 /* AddCounter */,
 				61204D1C24E15145004B4FA4 /* Components */,
 				61B874F024E1330D00AB845A /* Home */,
@@ -378,6 +389,26 @@
 				61A12D9924E6A0870037DCA4 /* AddCounterViewModel.swift */,
 			);
 			path = AddCounter;
+			sourceTree = "<group>";
+		};
+		61A12D9B24E6A7C60037DCA4 /* ExampleCounter */ = {
+			isa = PBXGroup;
+			children = (
+				61A12DA224E6AB100037DCA4 /* Views */,
+				61A12D9C24E6A7DC0037DCA4 /* ExampleViewController.swift */,
+				61A12D9E24E6A8070037DCA4 /* ExampleViewModel.swift */,
+				61A12DA024E6A9900037DCA4 /* Examples.storyboard */,
+			);
+			path = ExampleCounter;
+			sourceTree = "<group>";
+		};
+		61A12DA224E6AB100037DCA4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61A12DA324E6AB290037DCA4 /* ExampleTableViewCell.swift */,
+				61A12DA524E6AB380037DCA4 /* ExampleCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		61B874F024E1330D00AB845A /* Home */ = {
@@ -592,6 +623,7 @@
 				6162D10324E11EA500E49B45 /* SF-Pro-Display-Medium.otf in Resources */,
 				61B874F224E1332400AB845A /* Home.storyboard in Resources */,
 				618780D024E0CF5D00ED6184 /* LaunchScreen.storyboard in Resources */,
+				61A12DA124E6A9900037DCA4 /* Examples.storyboard in Resources */,
 				6162D10424E11EA500E49B45 /* SF-Pro-Display-Bold.otf in Resources */,
 				61A12D9824E699440037DCA4 /* AddCounter.storyboard in Resources */,
 				61204D1724E13F4D004B4FA4 /* EmptyStateView.xib in Resources */,
@@ -648,11 +680,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				61204D1324E13C45004B4FA4 /* Counter.swift in Sources */,
+				61A12D9D24E6A7DC0037DCA4 /* ExampleViewController.swift in Sources */,
 				61A12D9A24E6A0870037DCA4 /* AddCounterViewModel.swift in Sources */,
 				618780CB24E0CF5C00ED6184 /* Counters.xcdatamodeld in Sources */,
 				6162D0F124E103AE00E49B45 /* WelcomeTableViewCell.swift in Sources */,
 				618780C524E0CF5C00ED6184 /* WelcomeViewController.swift in Sources */,
+				61A12D9F24E6A8070037DCA4 /* ExampleViewModel.swift in Sources */,
 				618780C124E0CF5C00ED6184 /* AppDelegate.swift in Sources */,
+				61A12DA424E6AB290037DCA4 /* ExampleTableViewCell.swift in Sources */,
 				61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */,
 				61204D1B24E141CD004B4FA4 /* EmptyStateViewController.swift in Sources */,
 				61204D1E24E1515C004B4FA4 /* CounterToolBar.swift in Sources */,
@@ -660,6 +695,7 @@
 				61A12D9624E699380037DCA4 /* AddCounterViewController.swift in Sources */,
 				61E6C54324E4E35D00E4CC69 /* CounterTableViewCell.swift in Sources */,
 				618780C324E0CF5C00ED6184 /* SceneDelegate.swift in Sources */,
+				61A12DA624E6AB380037DCA4 /* ExampleCollectionViewCell.swift in Sources */,
 				61B874F424E1378800AB845A /* HomeViewController.swift in Sources */,
 				6162D10724E1306400E49B45 /* WelcomeGuideInfo.swift in Sources */,
 			);

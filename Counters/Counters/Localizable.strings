@@ -43,3 +43,10 @@
 "create.errorCreatingCounter" = "Couldn’t create the counter";
 "create.errorInternetConnection" = "The Internet connection appears to be offline.";
 "create.dismiss" = "Dismiss";
+
+/* Examples Screen */
+"example.title" = "Examples";
+"example.subtitle" = "Select an example to add it to your counters.";
+"example.back" = "Back";
+
+

@@ -50,7 +50,21 @@ class AddCounterViewController: UIViewController {
         attribute.addAttribute(NSAttributedString.Key.underlineStyle, value: 1 , range: range)
 
         seeExamplesButton.titleLabel?.attributedText = attribute
-        
+        configureSubscribers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = Language.CreateACounter.title.localizedValue
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        title = "Create"
+    }
+    
+    func configureSubscribers() {
         viewModel.$networkError
             .receive(on: DispatchQueue.main)
             .sink { [weak self] networkError in
@@ -75,18 +89,6 @@ class AddCounterViewController: UIViewController {
                 self?.goBackToPreviousScreen()
             }
             .store(in: &cancellables)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        title = Language.CreateACounter.title.localizedValue
-    }
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        title = "Create"
     }
     
     func configureUI() {

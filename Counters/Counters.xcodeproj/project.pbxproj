@@ -50,6 +50,7 @@
 		61B874F424E1378800AB845A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B874F324E1378800AB845A /* HomeViewController.swift */; };
 		61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */; };
 		61E6C54324E4E35D00E4CC69 /* CounterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C54224E4E35D00E4CC69 /* CounterTableViewCell.swift */; };
+		61E6C54524E5F7C000E4CC69 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C54424E5F7C000E4CC69 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		61B874F324E1378800AB845A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Search.swift"; sourceTree = "<group>"; };
 		61E6C54224E4E35D00E4CC69 /* CounterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTableViewCell.swift; sourceTree = "<group>"; };
+		61E6C54424E5F7C000E4CC69 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				61204D1F24E15186004B4FA4 /* EmptyState */,
-				61204D1D24E1515C004B4FA4 /* CounterToolBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -368,6 +369,7 @@
 				61E6C54124E4E34900E4CC69 /* Views */,
 				61B874F124E1332400AB845A /* Home.storyboard */,
 				61B874F324E1378800AB845A /* HomeViewController.swift */,
+				61E6C54424E5F7C000E4CC69 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -383,6 +385,7 @@
 		61E6C54124E4E34900E4CC69 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				61204D1D24E1515C004B4FA4 /* CounterToolBar.swift */,
 				61E6C54224E4E35D00E4CC69 /* CounterTableViewCell.swift */,
 			);
 			path = Views;
@@ -634,6 +637,7 @@
 				61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */,
 				61204D1B24E141CD004B4FA4 /* EmptyStateViewController.swift in Sources */,
 				61204D1E24E1515C004B4FA4 /* CounterToolBar.swift in Sources */,
+				61E6C54524E5F7C000E4CC69 /* HomeViewModel.swift in Sources */,
 				61E6C54324E4E35D00E4CC69 /* CounterTableViewCell.swift in Sources */,
 				618780C324E0CF5C00ED6184 /* SceneDelegate.swift in Sources */,
 				61B874F424E1378800AB845A /* HomeViewController.swift in Sources */,

@@ -3,7 +3,7 @@ import Foundation
 public enum Language {
     
     ///Contains all the copy texts used on Welcome Screen
-    public enum Welcome: String, Localizable, CaseIterable {
+    public enum Welcome: String, Localizable {
         case title
         case subtitle
         case addAlmostAnything
@@ -14,22 +14,18 @@ public enum Language {
         case countYourToughtsValue
         case continueButton
         
-        var sectionName: String {
-            return "welcome"
+        public var sectionName: String {
+            return "welcome.\(self.rawValue)"
         }
-        
-        public var localizedValue: String {
-            let key = "\(sectionName).\(self.rawValue)"
-            return NSLocalizedString(key, comment: key)
-        }
-        
     }
    
     /// Contains all the copy texts used on Main Screen
-    enum Main {
+    public enum Main: String, Localizable {
+        public typealias RawValue = String
+        
         case appName
         case search
-        case totalCount(numberOfCounts: Int, total: Int)
+        case totalCount
         case edit
         case errorLoadingCounters
         case errorInternetConnection
@@ -40,18 +36,29 @@ public enum Language {
         case createACounter
         case cancel
         case searchNoResults
+        case done
+        case selectAll
+        
+        public var sectionName: String {
+            return "main.\(self.rawValue)"
+        }
+        
     }
     
     /// Contains all the copy texts used on Edit mode for Main Screen
-    enum Edit {
-        case deleteCounters(count: Int)
+    public enum Edit: String, Localizable {
+//        case deleteCounters(count: Int)
         case cancel
         case selectCall
         case errorDeletion
+        
+        public var sectionName: String {
+            return "edit.\(self.rawValue)"
+        }
     }
     
     /// Contains all the copy texts used on Create a counter Screen
-    enum CreateACounter {
+    public enum CreateACounter: String, Localizable  {
         case title
         case cancel
         case save
@@ -60,16 +67,33 @@ public enum Language {
         case errorCreatingCounter
         case errorInternetConnection
         case dismiss
+        
+        public var sectionName: String {
+            return "create.\(self.rawValue)"
+        }
     }
     
     /// Contains all the copy texts used on Create a counter Screen
-    enum Examples {
+    public enum Examples: String, Localizable {
         case title
         case subtitle
+        
+        public var sectionName: String {
+            return "example.\(self.rawValue)"
+        }
+    }
+    
+    func testing(parameter: Localizable) -> String {
+        return parameter.localizedValue
     }
 }
 
-protocol Localizable {
+public protocol Localizable {
     var sectionName: String { get }
     var localizedValue: String { get }
+}
+extension Localizable {
+    public var localizedValue: String {
+        return NSLocalizedString(sectionName, comment: sectionName)
+    }
 }

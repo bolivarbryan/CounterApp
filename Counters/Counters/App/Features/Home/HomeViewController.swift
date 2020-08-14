@@ -10,109 +10,273 @@ import Components
 
 class HomeViewController: UIViewController {
     
-    var datasource: [Counter] = [
-        Counter(id: 0, title: "Push ups", value: 100),
-        Counter(id: 1, title: "Water plants"),
-        Counter(id: 2, title: "Visited Clients"),
-        Counter(id: 3, title: "Visited Clients", value: 999),
-        Counter(id: 4, title: "Visited Clients"),
-        Counter(id: 5, title: "Visited Clients", value: 70),
-        Counter(id: 6, title: "Visited Clients"),
-        Counter(id: 7, title: "Water plants"),
-        Counter(id: 8, title: "Visited Clients"),
-        Counter(id: 9, title: "Visited Clients"),
-        Counter(id: 10, title: "Visited Clients"),
-        Counter(id: 11, title: "Visited Clients"),
-        Counter(id: 12, title: "Visited Clients")
-    ]
+    ///Describes all the possible scenarios that HomeViewController can have
+    enum State {
+        case normal
+        case editingEnabled
+        case emptyState
+        case loading
+        case networkError
+        case searching
+        case searchWithoutResults
+    }
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var toolBar: CounterToolBar! {
+    //MARK: - Properties and UI Components
+    
+    var state: State = .loading {
         didSet {
-            toolBar.tintColor = UIColor.Pallete.tintColor
+            configureScreen()
         }
     }
     
+    let viewModel: HomeViewModel = HomeViewModel()
+    let emptyStateView = EmptyStateViewController(nibName: "EmptyStateView", bundle: nil)
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    @IBOutlet weak var emptyStateContainerView: UIView! {
+        didSet {
+            emptyStateContainerView.addSubview(emptyStateView.view)
+            emptyStateView.view.frame = emptyStateContainerView.bounds
+            emptyStateView.delegate = self
+        }
+    }
+    @IBOutlet weak var toolBar: CounterToolBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    override var view: UIView! {
+        didSet {
+            view.backgroundColor = UIColor.Pallete.backgroundColor
+        }
+    }
+    
+    //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "Counters"
+        title = Language.Main.appName.localizedValue
         configureNavigationBar()
-        configureToolBar()
+        tableView.contentInset.bottom = 20
+        toolBar.toolBarDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      
+        super.viewWillAppear(animated)
+        viewModel.loadData {
+            self.state = .normal
+        }
     }
+    
+    var editBtn: UIBarButtonItem {
+        UIBarButtonItem(title: Language.Main.edit.localizedValue,
+                                                           style: .plain,
+                                                           target: self, action: #selector(changeStateToEdit))
+    }
+    
+    var doneBtn: UIBarButtonItem {
+        UIBarButtonItem(title: Language.Main.done.localizedValue,
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(changeStateToNormal))
+    }
+    
+    var selectAllBtn: UIBarButtonItem {
+        UIBarButtonItem(title: Language.Main.selectAll.localizedValue,
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(selectAllCounters))
+    }
+    
+    //MARK: - State changes
+    
+    ///Updates the ui depending of the current state
+    func configureScreen() {
+        func configureForError(title: Localizable? = nil, body: Localizable, action: Localizable? = nil ) {
+            emptyStateContainerView.addSubview(emptyStateView.view)
+            toolBar.state = .onlyAdd
+            emptyStateView.reloadInfo(title: title, body: body, action: action)
+        }
+        
+        func enableTableView() {
+            tableView.isHidden = false
+            tableView.reloadData()
+        }
+        
+        resetUI()
+        
+        switch state {
+        case .emptyState, .networkError:
+            if state == .emptyState {
+                configureForError(title: Language.Main.errorNoCountersYet,
+                                  body: Language.Main.errorNoCountersYetDescription,
+                                  action:Language.Main.createACounter)
+            } else if state == .networkError {
+                configureForError(title: Language.Main.errorLoadingCounters,
+                                  body: Language.Main.errorInternetConnection,
+                                  action: Language.Main.retry)
+            }
+            navigationItem.leftBarButtonItem = editBtn
+            navigationItem.leftBarButtonItem?.isEnabled = false
+        case .loading:
+            activityIndicator.startAnimating()
+            toolBar.state = .onlyAdd
+            navigationItem.leftBarButtonItem = editBtn
+            navigationItem.leftBarButtonItem?.isEnabled = false
+        case .normal:
+            enableTableView()
+            toolBar.state = .titleWithAdd(count: viewModel.numberOfCounters,
+                                          total: viewModel.totalCount)
+            
+            navigationItem.leftBarButtonItem = editBtn
+        case .searching:
+            toolBar.state = .titleWithAdd(count: viewModel.numberOfCounters,
+                                          total: viewModel.totalCount)
+            enableTableView()
+            
+        case .searchWithoutResults:
+            configureForError(title: nil,
+                              body: Language.Main.searchNoResults,
+                              action: nil)
+        case .editingEnabled:
+            enableTableView()
+            navigationItem.leftBarButtonItem =  doneBtn
+            navigationItem.rightBarButtonItem =  selectAllBtn
+            toolBar.state = .deleteAndShare
+        }
 
+    }
+    
+    @objc func changeStateToNormal() {
+        state = .normal
+    }
+    
+    @objc func changeStateToEdit() {
+        viewModel.selectedCounters.removeAll()
+        state = .editingEnabled
+    }
+    
+    @objc func selectAllCounters() {
+        viewModel.selectAllCounters()
+        state = .editingEnabled
+    }
+    
+    ///Resets the components to a default state
+    func resetUI() {
+        tableView.isHidden = true
+        emptyStateView.view.removeFromSuperview()
+        activityIndicator.stopAnimating()
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    /// Configures Navigation bar behavior including Search bar controller
     func configureNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let searchController = UISearchController(searchResultsController: nil)
+        addSearchController(searchController: searchController)
+    }
+    
+    func addSearchController(searchController: UISearchController) {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.tintColor = UIColor.Pallete.tintColor
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
     }
     
-    func configureToolBar() {
-        toolBar.state = .titleWithAdd(count: 5, total: 15)
-    }
-    
-    func configureEmptyState() {
-        let emptyStateView = EmptyStateViewController(nibName: "EmptyStateView",
-                                                      bundle: nil)
-                                                      
-        emptyStateView.view.backgroundColor = UIColor.Pallete.gray230
-        emptyStateView.delegate = self
-        tableView.addSubview(emptyStateView.view)
+    func presentActionSheetForDelete() {
+        navigationItem.leftBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Delete \(viewModel.selectedCounters.count) Counters",
+                                   style: .default) { _ in
+            self.viewModel.deleteSelectedCounters()
+            if self.viewModel.datasource.count > 0 {
+                self.state = .normal
+            } else {
+                self.state = .emptyState
+            }
+        }
+        actionSheet.addAction(action)
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 
+//MARK: - UITableViewDataSource & UITableViewDelegate
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        if state == .searching {
+            return viewModel.filteredSearchResults.count
+        }
+        
+        return viewModel.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellID") as! CounterTableViewCell
-        cell.counter = datasource[indexPath.row]
+        let counter = state == .searching ? viewModel.filteredSearchResults[indexPath.row] : viewModel.datasource[indexPath.row]
+        cell.counter = counter
         cell.delegate = self
+        cell.state = state
+        cell.isCounterSelected = viewModel.selectedCounters.contains(counter)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    
 }
 
+//MARK: - EmptyStateDelegate
 extension HomeViewController: EmptyStateDelegate {
     func didSelectActionButton() {
+        state = .networkError
+    }
+}
+
+//MARK: - CounterTableViewCellDelegate
+extension HomeViewController: CounterTableViewCellDelegate {
+    func toggleCounterSelection(counter: Counter) {
+        viewModel.toggleCounterSelection(counter: counter)
+        state = .editingEnabled
+    }
+    
+    func counterValueDidUpdate(counter: Counter) {
+        viewModel.updateCounterValue(counter: counter)
+        configureScreen()
+    }
+}
+
+//MARK: - Search
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        state = searchController.isActive ? .searching : .normal
+        viewModel.filterCounters(text: searchController.searchBar.text ?? "")
+        tableView.reloadData()
         
+        if viewModel.filteredSearchResults.isEmpty {
+            state = .searchWithoutResults
+        }
     }
-    
-    var titleLabel: String {
-        return "No counters yet"
-    }
-    
-    var descriptionLabel: String {
-        return "“When I started counting my blessings, my whole life turned around.”\n—Willie Nelson"
-    }
-    
-    var actionButtonTitle: String {
-        return "Create a counter"
-    }
-    
 }
 
 
-extension HomeViewController: CounterTableViewCellDelegate {
-    func counterValueDidUpdate(counter: Counter) {
-        print(counter)
-        
-        datasource[counter.id] = counter
+//MARK: - CounterToolBarDelegate
+extension HomeViewController: CounterToolBarDelegate {
+    func didSelectDelete() {
+        presentActionSheetForDelete()
     }
+    
+    func didSelectAdd() {
+        print("add")
+    }
+    
+    func didSelectShare() {
+        print("share")
+    }
+    
     
 }

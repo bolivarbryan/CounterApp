@@ -16,3 +16,20 @@
 "welcome.countYourToughts" = "Count your thoughts";
 "welcome.countYourToughtsValue" = "Possibilities are literally endless.";
 "welcome.continueButton" = "Continue";
+
+/* Main Screen */
+"main.appName" = "Counters";
+"main.search" = "Search";
+"main.edit" = "Edit";
+"main.errorLoadingCounters" = "Couldn’t load the counters";
+"main.errorInternetConnection" = "The Internet connection appears to be offline.";
+"main.retry" = "Retry";
+"main.errorNoCountersYet" = "No counters yet";
+"main.errorNoCountersYetDescription" = "“When I started counting my blessings, my whole life turned around.”\n—Willie Nelson";
+"main.errorUpdatingValue" = "Couldn’t update the “Apples eaten” counter to 1";
+"main.createACounter" = "Create a counter";
+"main.cancel" = "Cancel";
+"main.done" = "Done";
+"main.searchNoResults" = "No results";
+"main.totalCount" = "%d items · Counted %d times";
+"main.selectAll" = "Select All";

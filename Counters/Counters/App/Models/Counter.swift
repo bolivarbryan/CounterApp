@@ -7,7 +7,16 @@
 
 import Foundation
 
-class Counter {
+class Counter: Equatable, Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: Counter, rhs: Counter) -> Bool {
+        lhs.title == rhs.title
+    }
+    
     var id: Int
     var title: String
     var value: Int

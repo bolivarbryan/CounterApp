@@ -45,8 +45,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        for i in Language.Welcome.allCases {
-//            print("\"\(i.sectionName).\(i.rawValue)\" = \"\";")
+//        for i in Language.Main.allCases {
+//            print("\"\(i.localizedValue).\(i.rawValue)\" = \"\";")
 //        }
     }
 }

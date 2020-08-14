@@ -10,31 +10,37 @@ import Components
 
 protocol EmptyStateDelegate {
     func didSelectActionButton()
-    
-    var titleLabel: String { get }
-    var descriptionLabel: String { get }
-    var actionButtonTitle: String { get }
 }
 
 class EmptyStateViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var actionButton: UIButton!
-    
-    var delegate: EmptyStateDelegate? {
+    @IBOutlet weak var titleLabel: UILabel! {
         didSet {
-            actionButton.setTitle(delegate?.actionButtonTitle, for: .normal)
-            actionButton.configureButtonStyle(size: .small)
-            
-            titleLabel.text = delegate?.titleLabel
             titleLabel.configureAsBodyTitle()
-            
-            descriptionLabel.text = delegate?.descriptionLabel
+        }
+    }
+    
+    @IBOutlet weak var descriptionLabel: UILabel! {
+        didSet {
             descriptionLabel.configureAsBody()
             descriptionLabel.textAlignment = .center
             descriptionLabel.textColor = UIColor.Pallete.darkSilver
         }
+    }
+    
+    @IBOutlet weak var actionButton: UIButton! {
+        didSet {
+            actionButton.configureButtonStyle(size: .small)
+        }
+    }
+    
+    var delegate: EmptyStateDelegate?
+    
+    func reloadInfo(title: Localizable?, body: Localizable?, action: Localizable?) {
+        actionButton.setTitle(action?.localizedValue, for: .normal)
+        titleLabel.text = title?.localizedValue
+        descriptionLabel.text = body?.localizedValue
+        actionButton.isHidden = (action == nil)
     }
     
     override func viewDidLoad() {
@@ -42,4 +48,7 @@ class EmptyStateViewController: UIViewController {
         view.backgroundColor = UIColor.Pallete.gray230
     }
 
+    @IBAction func sendAction(_ sender: Any) {
+        delegate?.didSelectActionButton()
+    }
 }

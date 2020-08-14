@@ -32,7 +32,7 @@ public enum Image {
         case .circle:
             name = "circle"
         case .circleCheckMark:
-            name = "checkmark.circle"
+            name = "checkmark.circle.fill"
         case .minus:
             name = "minus"
         case .plus:

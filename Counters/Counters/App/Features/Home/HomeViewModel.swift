@@ -70,6 +70,17 @@ class HomeViewModel {
         }
     }
     
+    func performCompletion(networkError: NetworkErrorType) {
+        if (self.error != nil) {
+            self.networkError = networkError
+        } else {
+            self.dataChanged.send()
+            self.emptyState = self.datasource.count == 0
+            self.networkError = .none
+        }
+    }
+
+    
     func deleteCounter(counter: Counter) {
         let countersPub = api.deleteCounterPublisher(id: counter.id)
             .catch { error -> AnyPublisher<[Counter], Never> in
@@ -86,70 +97,31 @@ class HomeViewModel {
                 self.datasource = $0
                 self.filteredSearchResults = $0
                 self.selectedCounters.remove(counter)
-                if (self.error != nil) {
-                    self.networkError = .alertDeletion
-                } else {
-                    self.dataChanged.send()
-                    self.emptyState = self.datasource.count == 0
-                    self.networkError = .none
-                }
+                self.performCompletion(networkError: .alertDeletion)
             })
             .store(in: &cancellables)
     }
     
     func updateCounterValue(counter: Counter, newValue: Int) {
-        if newValue > 0 {
-            let countersPub = api.increaseCounterPublisher(id: counter.id)
-                .catch { error -> AnyPublisher<[Counter], Never> in
-                    print("Error saving counter: \(error)")
-                    self.error = error
-                    return Just([]).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
+        let countersPub = api.updateCounterPublisher(id: counter.id, value: newValue)
+            .catch { error -> AnyPublisher<[Counter], Never> in
+                print("Error saving counter: \(error)")
+                self.error = error
+                return Just([]).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
 
-            countersPub
-                .receive(on: DispatchQueue.main)
-                .sink(receiveValue: {
-                    self.isLoading = false
-                    self.datasource = $0
-                    self.filterCounters(text: self.searchText)
-                    
-                    if (self.error != nil) {
-                        self.networkError = .alert
-                    } else {
-                        self.dataChanged.send()
-                        self.emptyState = self.datasource.count == 0
-                        self.networkError = .none
-                    }
-          
-                })
-                .store(in: &cancellables)
-        
-        } else {
-            let countersPub = api.decreaseCounterPublisher(id: counter.id)
-                .catch { error -> AnyPublisher<[Counter], Never> in
-                    print("Error saving counter: \(error)")
-                    self.error = error
-                    return Just([]).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
-
-            countersPub
-                .receive(on: DispatchQueue.main)
-                .sink(receiveValue: {
-                    self.isLoading = false
-                    self.datasource = $0
-                    self.filterCounters(text: self.searchText)
-                    if (self.error != nil) {
-                        self.networkError = .alert
-                    } else {
-                        self.dataChanged.send()
-                        self.emptyState = self.datasource.count == 0
-                        self.networkError = .none
-                    }
-                })
-                .store(in: &cancellables)
-        }
+        countersPub
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {
+                self.isLoading = false
+                self.datasource = $0
+                self.filterCounters(text: self.searchText)
+                
+                self.performCompletion(networkError: .alert)
+      
+            })
+            .store(in: &cancellables)
     }
     
     func fetchData() {
@@ -169,13 +141,7 @@ class HomeViewModel {
                 self.isLoading = false
                 self.datasource = $0
                 self.filteredSearchResults = $0
-                if (self.error != nil) {
-                    self.networkError = .emptyState
-                } else {
-                    self.dataChanged.send()
-                    self.emptyState = self.datasource.count == 0
-                    self.networkError = .none
-                }
+                self.performCompletion(networkError: .emptyState)
             })
             .store(in: &cancellables)
     }

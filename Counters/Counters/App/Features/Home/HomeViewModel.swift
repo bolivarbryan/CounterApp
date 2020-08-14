@@ -5,8 +5,9 @@ class HomeViewModel {
     var datasource: [Counter] = []
     var filteredSearchResults: [Counter] = []
     var selectedCounters: Set<Counter> = []
-    
+    var searchText: String = ""
     private(set) var dataChanged = PassthroughSubject<Void, Never>()
+    private(set) var dataUpdated = PassthroughSubject<Void, Never>()
 
     @Published
     var isLoading = false
@@ -74,7 +75,7 @@ class HomeViewModel {
                 .sink(receiveValue: {
                     self.isLoading = false
                     self.datasource = $0
-                    self.filteredSearchResults = $0
+                    self.filterCounters(text: self.searchText)
                     self.dataChanged.send()
                 })
                 .store(in: &cancellables)
@@ -92,7 +93,7 @@ class HomeViewModel {
                 .sink(receiveValue: {
                     self.isLoading = false
                     self.datasource = $0
-                    self.filteredSearchResults = $0
+                    self.filterCounters(text: self.searchText)
                     self.dataChanged.send()
                 })
                 .store(in: &cancellables)
@@ -100,13 +101,14 @@ class HomeViewModel {
     }
     
     func filterCounters(text: String) {
-        guard !text.isEmpty else {
+        searchText = text
+        guard !searchText.isEmpty else {
             filteredSearchResults = datasource
             return
         }
         
         filteredSearchResults = datasource.filter({ (counter) -> Bool in
-            counter.title.lowercased().contains(text.lowercased())
+            counter.title.lowercased().contains(searchText.lowercased())
         })
     }
     

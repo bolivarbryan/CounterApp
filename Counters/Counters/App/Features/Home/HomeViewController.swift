@@ -45,6 +45,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var toolBar: CounterToolBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    private let refreshControl = UIRefreshControl()
     
     override var view: UIView! {
         didSet {
@@ -59,6 +60,9 @@ class HomeViewController: UIViewController {
         title = Language.Main.appName.localizedValue
         tableView.contentInset.bottom = 20
         toolBar.toolBarDelegate = self
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
+        setupPublishers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,26 +92,42 @@ class HomeViewController: UIViewController {
                                                             action: #selector(selectAllCounters))
     }
     
-    //MARK: - ViewModel Data Setup
-    private func fetchData() {
-         viewModel.$isLoading
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] isLoading in
-                 if isLoading {
-                    self?.state = .loading
-                 } else {
+    //MARK: - Combine Publishers
+    
+    func setupPublishers() {
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                   self?.state = .loading
+                } else {
+                    self?.refreshControl.endRefreshing()
+                }
+            }
+            .store(in: &cancellables)
+        
+       viewModel.dataChanged
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                if self?.searchController.isActive == true {
+                    self?.state = .searching
+                    self?.tableView.reloadData()
+                } else {
                     self?.state = .normal
-                 }
-             }
-             .store(in: &cancellables)
-         
-        viewModel.dataChanged
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.dataUpdated
              .receive(on: DispatchQueue.main)
              .sink { [weak self] _ in
-                self?.state = .normal
+                self?.state = .editingEnabled
              }
              .store(in: &cancellables)
-         
+    }
+    
+    //MARK: - ViewModel Data Setup
+    @objc private func fetchData() {
         viewModel.fetchData()
      }
     
@@ -277,7 +297,6 @@ extension HomeViewController: CounterTableViewCellDelegate {
     
     func counterValueDidUpdate(counter: Counter, newValue: Int) {
         viewModel.updateCounterValue(counter: counter, newValue: newValue)
-        configureScreenForState()
     }
 }
 

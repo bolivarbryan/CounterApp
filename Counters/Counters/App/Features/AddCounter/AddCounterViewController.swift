@@ -51,6 +51,25 @@ class AddCounterViewController: UIViewController {
         attribute.addAttribute(NSAttributedString.Key.underlineStyle, value: 1 , range: range)
 
         seeExamplesButton.titleLabel?.attributedText = attribute
+        
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                   self?.state = .saving
+                } else {
+                   self?.state = .content
+                }
+            }
+            .store(in: &cancellables)
+        
+       viewModel.dataChanged
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.goBackToPreviousScreen()
+            }
+            .store(in: &cancellables)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,27 +121,6 @@ class AddCounterViewController: UIViewController {
             return
         }
         self.state = .saving
-        
-        viewModel.$isLoading
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isLoading in
-                if isLoading {
-                   self?.state = .saving
-                } else {
-                   self?.state = .content
-                }
-            }
-            .store(in: &cancellables)
-        
-       viewModel.dataChanged
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.goBackToPreviousScreen()
-            }
-            .store(in: &cancellables)
-        
-
-        
         viewModel.saveCounter(title: text)
     }
 

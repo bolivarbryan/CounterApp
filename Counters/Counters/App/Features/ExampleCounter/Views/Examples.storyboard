@@ -50,15 +50,15 @@
                                 <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExampleCellD" rowHeight="100" id="Vgj-ej-mxM" customClass="ExampleTableViewCell" customModule="Counters" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExampleCellD" rowHeight="134" id="Vgj-ej-mxM" customClass="ExampleTableViewCell" customModule="Counters" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="134"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vgj-ej-mxM" id="LIm-ah-JR3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="134"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="chr-UB-WnD">
-                                                    <rect key="frame" x="0.0" y="30" width="414" height="70"/>
+                                                    <rect key="frame" x="0.0" y="64" width="414" height="70"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="j7b-3D-GdV"/>
@@ -115,7 +115,7 @@
                                                     </cells>
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSC-sL-QWD">
-                                                    <rect key="frame" x="23" y="0.0" width="391" height="21"/>
+                                                    <rect key="frame" x="23" y="34" width="391" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="bwv-p1-5el"/>
                                                     </constraints>
@@ -126,11 +126,11 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="chr-UB-WnD" firstAttribute="top" secondItem="LIm-ah-JR3" secondAttribute="top" constant="30" id="3f9-aj-cy5"/>
+                                                <constraint firstItem="chr-UB-WnD" firstAttribute="top" secondItem="LIm-ah-JR3" secondAttribute="top" constant="64" id="3f9-aj-cy5"/>
                                                 <constraint firstAttribute="trailing" secondItem="chr-UB-WnD" secondAttribute="trailing" id="Hh8-An-Jgo"/>
                                                 <constraint firstAttribute="bottom" secondItem="chr-UB-WnD" secondAttribute="bottom" id="Qy8-Eu-BEB"/>
                                                 <constraint firstItem="fSC-sL-QWD" firstAttribute="leading" secondItem="LIm-ah-JR3" secondAttribute="leading" constant="23" id="jFy-qF-ZFi"/>
-                                                <constraint firstItem="fSC-sL-QWD" firstAttribute="top" secondItem="LIm-ah-JR3" secondAttribute="top" id="rfv-Ei-Xbo"/>
+                                                <constraint firstItem="fSC-sL-QWD" firstAttribute="top" secondItem="LIm-ah-JR3" secondAttribute="top" constant="34" id="rfv-Ei-Xbo"/>
                                                 <constraint firstItem="chr-UB-WnD" firstAttribute="leading" secondItem="LIm-ah-JR3" secondAttribute="leading" id="s3i-dY-BEn"/>
                                                 <constraint firstAttribute="trailing" secondItem="fSC-sL-QWD" secondAttribute="trailing" id="yuo-Lg-ZDF"/>
                                             </constraints>

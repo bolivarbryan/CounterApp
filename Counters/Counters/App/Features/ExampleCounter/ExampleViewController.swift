@@ -14,7 +14,6 @@ class ExampleViewController: UIViewController {
         selectAnExampleLabel.configureAsViewSubtitle()
         selectAnExampleLabel.text = Language.Examples.subtitle.localizedValue
         navigationItem.largeTitleDisplayMode = .never
-        tableView.contentInset.top = 20
     }
     
     @objc func goBackToPreviousScreen() {

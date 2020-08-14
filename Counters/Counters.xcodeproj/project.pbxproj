@@ -397,7 +397,6 @@
 				61A12DA224E6AB100037DCA4 /* Views */,
 				61A12D9C24E6A7DC0037DCA4 /* ExampleViewController.swift */,
 				61A12D9E24E6A8070037DCA4 /* ExampleViewModel.swift */,
-				61A12DA024E6A9900037DCA4 /* Examples.storyboard */,
 			);
 			path = ExampleCounter;
 			sourceTree = "<group>";
@@ -406,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				61A12DA324E6AB290037DCA4 /* ExampleTableViewCell.swift */,
+				61A12DA024E6A9900037DCA4 /* Examples.storyboard */,
 				61A12DA524E6AB380037DCA4 /* ExampleCollectionViewCell.swift */,
 			);
 			path = Views;

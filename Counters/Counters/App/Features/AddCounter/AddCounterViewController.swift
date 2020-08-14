@@ -42,7 +42,6 @@ class AddCounterViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         state = .normal
         
-        
         let stringToUpdate = "examples"
         let mainString = Language.CreateACounter.suggestionText.localizedValue
         let range = (mainString as NSString).range(of: stringToUpdate)
@@ -51,6 +50,15 @@ class AddCounterViewController: UIViewController {
         attribute.addAttribute(NSAttributedString.Key.underlineStyle, value: 1 , range: range)
 
         seeExamplesButton.titleLabel?.attributedText = attribute
+        
+        viewModel.$networkError
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] networkError in
+                if networkError {
+                    self?.state = .error
+                }
+            }
+            .store(in: &cancellables)
         
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)

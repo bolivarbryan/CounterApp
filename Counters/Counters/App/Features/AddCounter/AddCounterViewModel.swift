@@ -8,6 +8,11 @@ class AddCounterViewModel {
     @Published
     var isLoading = false
     
+    @Published
+    var networkError: Bool = false
+    
+    var error: Error?
+    
     private let api = CounterAPI()
     private var cancellables = Set<AnyCancellable>()
     
@@ -15,6 +20,7 @@ class AddCounterViewModel {
         let countersPub = api.createCounterPublisher(title: title)
             .catch { error -> AnyPublisher<[Counter], Never> in
                 print("Error Deleting counter: \(error)")
+                self.error = error
                 return Just([]).eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
@@ -23,7 +29,11 @@ class AddCounterViewModel {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { _ in
                 self.isLoading = false
-                self.dataChanged.send()
+                if self.error == nil {
+                    self.dataChanged.send()
+                } else {
+                    self.networkError = true
+                }
             })
             .store(in: &cancellables)
     }

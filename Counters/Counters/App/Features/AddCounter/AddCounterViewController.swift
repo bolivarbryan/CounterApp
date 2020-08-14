@@ -57,8 +57,6 @@ class AddCounterViewController: UIViewController {
             .sink { [weak self] isLoading in
                 if isLoading {
                    self?.state = .saving
-                } else {
-                   self?.state = .content
                 }
             }
             .store(in: &cancellables)

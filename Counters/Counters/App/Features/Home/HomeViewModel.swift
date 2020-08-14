@@ -12,6 +12,14 @@ class HomeViewModel {
     @Published
     var isLoading = false
     
+    @Published
+    var networkError: Bool = false
+    
+    @Published
+    var emptyState: Bool = false
+    
+    var error: Error?
+    
     private let api = CounterAPI()
     private var cancellables = Set<AnyCancellable>()
     
@@ -23,81 +31,6 @@ class HomeViewModel {
         filteredSearchResults
             .map(\.count)
             .reduce(0, +)
-    }
-    
-    func deleteSelectedCounters() {
-        selectedCounters.forEach { counter in
-            deleteCounter(counter: counter)
-        }
-    
-        self.datasource.removeAll { (counter) -> Bool in
-            selectedCounters.contains(counter)
-        }
-        selectedCounters.removeAll()
-        filteredSearchResults = datasource
-    }
-    
-    func deleteCounter(counter: Counter) {
-        let countersPub = api.deleteCounterPublisher(id: counter.id)
-            .catch { error -> AnyPublisher<[Counter], Never> in
-                print("Error Deleting counter: \(error)")
-                return Just([]).eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
-
-        countersPub
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: {
-                self.isLoading = false
-                self.datasource = $0
-                self.filteredSearchResults = $0
-                self.selectedCounters.remove(counter)
-                self.dataChanged.send()
-            })
-            .store(in: &cancellables)
-    }
-    
-    func selectAllCounters() {
-        selectedCounters = Set(datasource)
-    }
-    
-    func updateCounterValue(counter: Counter, newValue: Int) {
-        if newValue > 0 {
-            let countersPub = api.increaseCounterPublisher(id: counter.id)
-                .catch { error -> AnyPublisher<[Counter], Never> in
-                    print("Error saving counter: \(error)")
-                    return Just([]).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
-
-            countersPub
-                .receive(on: DispatchQueue.main)
-                .sink(receiveValue: {
-                    self.isLoading = false
-                    self.datasource = $0
-                    self.filterCounters(text: self.searchText)
-                    self.dataChanged.send()
-                })
-                .store(in: &cancellables)
-        
-        } else {
-            let countersPub = api.decreaseCounterPublisher(id: counter.id)
-                .catch { error -> AnyPublisher<[Counter], Never> in
-                    print("Error saving counter: \(error)")
-                    return Just([]).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
-
-            countersPub
-                .receive(on: DispatchQueue.main)
-                .sink(receiveValue: {
-                    self.isLoading = false
-                    self.datasource = $0
-                    self.filterCounters(text: self.searchText)
-                    self.dataChanged.send()
-                })
-                .store(in: &cancellables)
-        }
     }
     
     func filterCounters(text: String) {
@@ -120,20 +53,90 @@ class HomeViewModel {
         }
     }
     
-//    func loadData(completion: @escaping  () -> ()) {
-////        datasource = (0...9).map {
-////            Counter(id: $0, title: "In a storyboard-based application, you will often want to do a little preparation before navigation \($0)", value: $0)
-////        }
-////
-////        filteredSearchResults = datasource
-////        completion()
-//    }
+    func selectAllCounters() {
+        selectedCounters = Set(datasource)
+    }
+    
+    func deleteSelectedCounters() {
+        selectedCounters.forEach { counter in
+            deleteCounter(counter: counter)
+        }
+    }
+    
+    func deleteCounter(counter: Counter) {
+        let countersPub = api.deleteCounterPublisher(id: counter.id)
+            .catch { error -> AnyPublisher<[Counter], Never> in
+                print("Error Deleting counter: \(error)")
+                self.error = error
+                return Just([]).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+
+        countersPub
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {
+                self.isLoading = false
+                self.datasource = $0
+                self.filteredSearchResults = $0
+                self.selectedCounters.remove(counter)
+                self.dataChanged.send()
+                self.emptyState = self.datasource.count == 0
+                self.networkError = (self.error != nil)
+            })
+            .store(in: &cancellables)
+    }
+    
+    func updateCounterValue(counter: Counter, newValue: Int) {
+        if newValue > 0 {
+            let countersPub = api.increaseCounterPublisher(id: counter.id)
+                .catch { error -> AnyPublisher<[Counter], Never> in
+                    print("Error saving counter: \(error)")
+                    self.networkError = true
+                    return Just([]).eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+
+            countersPub
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: {
+                    self.isLoading = false
+                    self.datasource = $0
+                    self.filterCounters(text: self.searchText)
+                    self.dataChanged.send()
+                    self.emptyState = self.datasource.count == 0
+                    self.networkError = (self.error != nil)
+                })
+                .store(in: &cancellables)
+        
+        } else {
+            let countersPub = api.decreaseCounterPublisher(id: counter.id)
+                .catch { error -> AnyPublisher<[Counter], Never> in
+                    print("Error saving counter: \(error)")
+                    self.networkError = true
+                    return Just([]).eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
+
+            countersPub
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: {
+                    self.isLoading = false
+                    self.datasource = $0
+                    self.filterCounters(text: self.searchText)
+                    self.dataChanged.send()
+                    self.emptyState = self.datasource.count == 0
+                    self.networkError = (self.error != nil)
+                })
+                .store(in: &cancellables)
+        }
+    }
     
     func fetchData() {
         isLoading = true
         let countersPub = api.countersPublisher()
             .catch { error -> AnyPublisher<[Counter], Never> in
                 print("Error loading counters: \(error)")
+                self.error = error
                 return Just([]).eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
@@ -145,6 +148,8 @@ class HomeViewModel {
                 self.datasource = $0
                 self.filteredSearchResults = $0
                 self.dataChanged.send()
+                self.emptyState = self.datasource.count == 0
+                self.networkError = (self.error != nil)
             })
             .store(in: &cancellables)
     }

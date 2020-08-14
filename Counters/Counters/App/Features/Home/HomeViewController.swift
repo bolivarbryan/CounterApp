@@ -95,6 +95,24 @@ class HomeViewController: UIViewController {
     //MARK: - Combine Publishers
     
     func setupPublishers() {
+        viewModel.$emptyState
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] emptyState in
+                if emptyState {
+                    self?.state = .emptyState
+                }
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$networkError
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] networkError in
+                if networkError {
+                   self?.state = .networkError
+                }
+            }
+            .store(in: &cancellables)
+        
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
@@ -236,11 +254,6 @@ class HomeViewController: UIViewController {
         let action = UIAlertAction(title: "Delete \(viewModel.selectedCounters.count) Counters",
                                    style: .default) { _ in
             self.viewModel.deleteSelectedCounters()
-            if self.viewModel.datasource.count > 0 {
-                self.state = .normal
-            } else {
-                self.state = .emptyState
-            }
         }
         actionSheet.addAction(action)
         actionSheet.addAction(UIAlertAction(title: "Cancel",
@@ -281,7 +294,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: EmptyStateDelegate {
     func didSelectActionButton() {
         if state == .networkError {
-            state = .loading
+            fetchData()
         } else if state == .emptyState {
             didSelectAdd()
         }

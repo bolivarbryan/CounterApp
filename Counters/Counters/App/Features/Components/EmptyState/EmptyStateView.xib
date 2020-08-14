@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Q14-n6-A8M">
-                    <rect key="frame" x="57" y="384" width="300" height="128"/>
+                    <rect key="frame" x="57" y="314" width="300" height="128"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mZ-ZP-nLq">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -72,7 +72,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Q14-n6-A8M" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lu8-O6-HlB"/>
-                <constraint firstItem="Q14-n6-A8M" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="t2v-0W-bZS"/>
+                <constraint firstItem="Q14-n6-A8M" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-70" id="t2v-0W-bZS"/>
             </constraints>
             <point key="canvasLocation" x="139" y="145"/>
         </view>

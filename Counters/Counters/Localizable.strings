@@ -33,3 +33,13 @@
 "main.searchNoResults" = "No results";
 "main.totalCount" = "%d items · Counted %d times";
 "main.selectAll" = "Select All";
+
+/* Create A Counter Screen */
+"create.title" = "Create a counter";
+"create.cancel" = "Cancel";
+"create.save" = "Save";
+"create.suggestionText" = "Give it a name. Creative block? See examples.";
+"create.examples" = "examples.";
+"create.errorCreatingCounter" = "Couldn’t create the counter";
+"create.errorInternetConnection" = "The Internet connection appears to be offline.";
+"create.dismiss" = "Dismiss";

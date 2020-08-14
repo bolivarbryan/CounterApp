@@ -46,6 +46,9 @@
 		618780DB24E0CF5D00ED6184 /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780DA24E0CF5D00ED6184 /* CountersTests.swift */; };
 		618780E624E0CF5D00ED6184 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618780E524E0CF5D00ED6184 /* CountersUITests.swift */; };
 		618780FE24E0D0B700ED6184 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 618780FD24E0D0B700ED6184 /* Localizable.strings */; };
+		61A12D9624E699380037DCA4 /* AddCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12D9524E699380037DCA4 /* AddCounterViewController.swift */; };
+		61A12D9824E699440037DCA4 /* AddCounter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61A12D9724E699440037DCA4 /* AddCounter.storyboard */; };
+		61A12D9A24E6A0870037DCA4 /* AddCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A12D9924E6A0870037DCA4 /* AddCounterViewModel.swift */; };
 		61B874F224E1332400AB845A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B874F124E1332400AB845A /* Home.storyboard */; };
 		61B874F424E1378800AB845A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B874F324E1378800AB845A /* HomeViewController.swift */; };
 		61E6C54024E4E1D400E4CC69 /* UINavigationBar+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */; };
@@ -147,6 +150,9 @@
 		618780E524E0CF5D00ED6184 /* CountersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersUITests.swift; sourceTree = "<group>"; };
 		618780E724E0CF5D00ED6184 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		618780FD24E0D0B700ED6184 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		61A12D9524E699380037DCA4 /* AddCounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCounterViewController.swift; sourceTree = "<group>"; };
+		61A12D9724E699440037DCA4 /* AddCounter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddCounter.storyboard; sourceTree = "<group>"; };
+		61A12D9924E6A0870037DCA4 /* AddCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCounterViewModel.swift; sourceTree = "<group>"; };
 		61B874F124E1332400AB845A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		61B874F324E1378800AB845A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		61E6C53F24E4E1D400E4CC69 /* UINavigationBar+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Search.swift"; sourceTree = "<group>"; };
@@ -259,6 +265,7 @@
 		6162D0EE24E1039300E49B45 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				61A12D9424E699230037DCA4 /* AddCounter */,
 				61204D1C24E15145004B4FA4 /* Components */,
 				61B874F024E1330D00AB845A /* Home */,
 				6162D0EF24E1039900E49B45 /* Welcome */,
@@ -361,6 +368,16 @@
 				618780E724E0CF5D00ED6184 /* Info.plist */,
 			);
 			path = CountersUITests;
+			sourceTree = "<group>";
+		};
+		61A12D9424E699230037DCA4 /* AddCounter */ = {
+			isa = PBXGroup;
+			children = (
+				61A12D9524E699380037DCA4 /* AddCounterViewController.swift */,
+				61A12D9724E699440037DCA4 /* AddCounter.storyboard */,
+				61A12D9924E6A0870037DCA4 /* AddCounterViewModel.swift */,
+			);
+			path = AddCounter;
 			sourceTree = "<group>";
 		};
 		61B874F024E1330D00AB845A /* Home */ = {
@@ -576,6 +593,7 @@
 				61B874F224E1332400AB845A /* Home.storyboard in Resources */,
 				618780D024E0CF5D00ED6184 /* LaunchScreen.storyboard in Resources */,
 				6162D10424E11EA500E49B45 /* SF-Pro-Display-Bold.otf in Resources */,
+				61A12D9824E699440037DCA4 /* AddCounter.storyboard in Resources */,
 				61204D1724E13F4D004B4FA4 /* EmptyStateView.xib in Resources */,
 				618780FE24E0D0B700ED6184 /* Localizable.strings in Resources */,
 				6162D10024E11EA500E49B45 /* SF-Pro-Display-Semibold.otf in Resources */,
@@ -630,6 +648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61204D1324E13C45004B4FA4 /* Counter.swift in Sources */,
+				61A12D9A24E6A0870037DCA4 /* AddCounterViewModel.swift in Sources */,
 				618780CB24E0CF5C00ED6184 /* Counters.xcdatamodeld in Sources */,
 				6162D0F124E103AE00E49B45 /* WelcomeTableViewCell.swift in Sources */,
 				618780C524E0CF5C00ED6184 /* WelcomeViewController.swift in Sources */,
@@ -638,6 +657,7 @@
 				61204D1B24E141CD004B4FA4 /* EmptyStateViewController.swift in Sources */,
 				61204D1E24E1515C004B4FA4 /* CounterToolBar.swift in Sources */,
 				61E6C54524E5F7C000E4CC69 /* HomeViewModel.swift in Sources */,
+				61A12D9624E699380037DCA4 /* AddCounterViewController.swift in Sources */,
 				61E6C54324E4E35D00E4CC69 /* CounterTableViewCell.swift in Sources */,
 				618780C324E0CF5C00ED6184 /* SceneDelegate.swift in Sources */,
 				61B874F424E1378800AB845A /* HomeViewController.swift in Sources */,

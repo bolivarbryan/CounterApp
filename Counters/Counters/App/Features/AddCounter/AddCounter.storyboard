@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bKQ-FK-14c">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17120"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create a counter-->
+        <scene sceneID="F0p-Y6-lXU">
+            <objects>
+                <viewController title="Create a counter" id="bKQ-FK-14c" customClass="AddCounterViewController" customModule="Counters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1HY-rp-iwC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsp-4s-RBW">
+                                <rect key="frame" x="12" y="113" width="390" height="55"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cups of coffee" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t59-kt-5pg">
+                                        <rect key="frame" x="17" y="0.0" width="337" height="55"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textfieldUpdated:" destination="bKQ-FK-14c" eventType="editingChanged" id="0cb-Ix-geB"/>
+                                        </connections>
+                                    </textField>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="56W-SX-z5V">
+                                        <rect key="frame" x="354" y="17.5" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="56W-SX-z5V" firstAttribute="centerY" secondItem="nsp-4s-RBW" secondAttribute="centerY" id="9Zq-vb-iDp"/>
+                                    <constraint firstItem="t59-kt-5pg" firstAttribute="top" secondItem="nsp-4s-RBW" secondAttribute="top" id="AOp-7T-SPl"/>
+                                    <constraint firstItem="t59-kt-5pg" firstAttribute="leading" secondItem="nsp-4s-RBW" secondAttribute="leading" constant="17" id="G1D-5C-bVo"/>
+                                    <constraint firstAttribute="bottom" secondItem="t59-kt-5pg" secondAttribute="bottom" id="dGy-YX-x1S"/>
+                                    <constraint firstAttribute="trailing" secondItem="56W-SX-z5V" secondAttribute="trailing" constant="16" id="ihJ-KM-vag"/>
+                                    <constraint firstAttribute="trailing" secondItem="t59-kt-5pg" secondAttribute="trailing" constant="36" id="jGh-Ja-URR"/>
+                                    <constraint firstAttribute="height" constant="55" id="uI8-VE-XiV"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWo-Lt-tgV">
+                                <rect key="frame" x="12" y="181" width="390" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="loadExamplesView:" destination="bKQ-FK-14c" eventType="touchUpInside" id="jUq-ff-Lyw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AGy-tf-220"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nsp-4s-RBW" firstAttribute="leading" secondItem="AGy-tf-220" secondAttribute="leading" constant="12" id="JUW-8R-dvf"/>
+                            <constraint firstItem="AGy-tf-220" firstAttribute="trailing" secondItem="vWo-Lt-tgV" secondAttribute="trailing" constant="12" id="YY1-rU-VPS"/>
+                            <constraint firstItem="vWo-Lt-tgV" firstAttribute="leading" secondItem="AGy-tf-220" secondAttribute="leading" constant="12" id="b6g-Ds-CR7"/>
+                            <constraint firstItem="AGy-tf-220" firstAttribute="trailing" secondItem="nsp-4s-RBW" secondAttribute="trailing" constant="12" id="h5P-Pm-Uv2"/>
+                            <constraint firstItem="nsp-4s-RBW" firstAttribute="top" secondItem="AGy-tf-220" secondAttribute="top" constant="25" id="jeA-wR-48y"/>
+                            <constraint firstItem="vWo-Lt-tgV" firstAttribute="top" secondItem="nsp-4s-RBW" secondAttribute="bottom" constant="13" id="m5X-8I-Wp5"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="56W-SX-z5V" id="Fud-mb-1pq"/>
+                        <outlet property="counterNameTextField" destination="t59-kt-5pg" id="Gtd-mX-Aiy"/>
+                        <outlet property="seeExamplesButton" destination="vWo-Lt-tgV" id="TqF-ro-7u0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZAV-bO-vnq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="364" y="133"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

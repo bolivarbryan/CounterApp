@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     
     var state: State = .loading {
         didSet {
-            configureScreen()
+            configureScreenForState()
         }
     }
     
@@ -90,7 +90,7 @@ class HomeViewController: UIViewController {
     //MARK: - State changes
     
     ///Updates the ui depending of the current state
-    func configureScreen() {
+    func configureScreenForState() {
         func configureForError(title: Localizable? = nil, body: Localizable, action: Localizable? = nil ) {
             emptyStateContainerView.addSubview(emptyStateView.view)
             toolBar.state = .onlyAdd
@@ -201,6 +201,7 @@ class HomeViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel",
                                             style: .cancel,
                                             handler: nil))
+        actionSheet.view.tintColor = UIColor.Pallete.tintColor
         self.present(actionSheet, animated: true, completion: nil)
     }
 }
@@ -246,7 +247,7 @@ extension HomeViewController: CounterTableViewCellDelegate {
     
     func counterValueDidUpdate(counter: Counter) {
         viewModel.updateCounterValue(counter: counter)
-        configureScreen()
+        configureScreenForState()
     }
 }
 
@@ -271,7 +272,7 @@ extension HomeViewController: CounterToolBarDelegate {
     }
     
     func didSelectAdd() {
-        print("add")
+        performSegue(withIdentifier: "CreateCounterSegue", sender: self)
     }
     
     func didSelectShare() {

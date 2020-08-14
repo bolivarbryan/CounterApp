@@ -160,11 +160,22 @@
                         <outlet property="emptyStateContainerView" destination="Bed-1b-k9C" id="kAd-Jo-dDM"/>
                         <outlet property="tableView" destination="PNK-pS-TMq" id="4Y7-5h-bxn"/>
                         <outlet property="toolBar" destination="gs5-y6-siC" id="ubi-Fs-NIN"/>
+                        <segue destination="c5B-Yw-IRa" kind="show" identifier="CreateCounterSegue" id="8Mk-jK-pby"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdS-mT-i5h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1382.608695652174" y="-65.625"/>
+        </scene>
+        <!--AddCounter-->
+        <scene sceneID="qyL-ej-S4w">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddCounter" id="c5B-Yw-IRa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NC0-Uh-ZoQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="euJ-m0-C06" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2146" y="-136"/>
         </scene>
         <!--Item-->
         <scene sceneID="AgP-mX-YOd">

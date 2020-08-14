@@ -83,10 +83,7 @@ public enum Language {
             return "example.\(self.rawValue)"
         }
     }
-    
-    func testing(parameter: Localizable) -> String {
-        return parameter.localizedValue
-    }
+
 }
 
 public protocol Localizable {

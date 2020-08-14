@@ -10,8 +10,12 @@ import XCTest
 
 class ComponentsTests: XCTestCase {
 
-    func testLanguageTranslation_ShouldLocalizeWelcometitle() {
+    func testLanguageTranslation_ShouldLocalize() {
         XCTAssertEqual(Language.Welcome.title.localizedValue, "Welcome to\nCounters")
+        XCTAssertEqual(Language.Main.selectAll.localizedValue, "Select All")
+        XCTAssertEqual(Language.Edit.cancel.localizedValue, "Cancel")
+        XCTAssertEqual(Language.CreateACounter.save.localizedValue, "Save")
+        XCTAssertEqual(Language.Examples.back.localizedValue, "Back")
     }
     
     func testImageLocalization_ShouldLocalizeSystemImage() {
@@ -55,13 +59,22 @@ class ComponentsTests: XCTestCase {
         UserDefaults.standard.setValue(nil, forKey: "debug_mode")
         label.validateDebugMode()
         XCTAssertEqual(label.backgroundColor, .clear)
+        
+        label.configureAsViewSubtitle()
+        XCTAssertEqual(label.font.familyName, ".AppleSystemUIFont")
+        
+        label.configureAsCellSectionTitle()
+        XCTAssertEqual(label.font.familyName, ".AppleSystemUIFont")
+        
+        label.configureAsCellLargeTitle(enabled: true)
+        XCTAssertEqual(label.font.familyName, ".AppleSystemUIFont")
     }
+    
     
     func testLabelAttributesPersistsPlainText() {
         let label = UILabel(frame: .zero)
         label.text = "Testing"
         label.configureAsBody()
         XCTAssertEqual(label.attributedText?.string, "Testing")
-
     }
 }

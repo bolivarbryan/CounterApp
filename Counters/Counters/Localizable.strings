@@ -49,4 +49,7 @@
 "example.subtitle" = "Select an example to add it to your counters.";
 "example.back" = "Back";
 
-
+/* Edit Screen */
+"edit.cancel" = "Cancel";
+"edit.selectAll" = "Select All";
+"edit.errorDeletion" = "Error Deleting";

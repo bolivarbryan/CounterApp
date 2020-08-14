@@ -18,6 +18,8 @@ class HomeViewController: UIViewController {
         case emptyState
         case loading
         case networkError
+        case networkErrorAlert
+        case networkErrorAlertDeletion
         case searching
         case searchWithoutResults
     }
@@ -34,6 +36,8 @@ class HomeViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     let emptyStateView = EmptyStateViewController(nibName: "EmptyStateView", bundle: nil)
     let searchController = UISearchController(searchResultsController: nil)
+    var valueToUpdateCounter: Int = 0
+    var counterToUpdate: Counter?
     
     @IBOutlet weak var emptyStateContainerView: UIView! {
         didSet {
@@ -74,22 +78,22 @@ class HomeViewController: UIViewController {
     
     var editBtn: UIBarButtonItem {
         UIBarButtonItem(title: Language.Main.edit.localizedValue,
-                                                           style: .plain,
-                                                           target: self, action: #selector(changeStateToEdit))
+                        style: .plain,
+                        target: self, action: #selector(changeStateToEdit))
     }
     
     var doneBtn: UIBarButtonItem {
         UIBarButtonItem(title: Language.Main.done.localizedValue,
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(changeStateToNormal))
+                        style: .done,
+                        target: self,
+                        action: #selector(changeStateToNormal))
     }
     
     var selectAllBtn: UIBarButtonItem {
         UIBarButtonItem(title: Language.Main.selectAll.localizedValue,
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(selectAllCounters))
+                        style: .done,
+                        target: self,
+                        action: #selector(selectAllCounters))
     }
     
     //MARK: - Combine Publishers
@@ -107,8 +111,15 @@ class HomeViewController: UIViewController {
         viewModel.$networkError
             .receive(on: DispatchQueue.main)
             .sink { [weak self] networkError in
-                if networkError {
-                   self?.state = .networkError
+                switch networkError {
+                case .alert:
+                    self?.state = .networkErrorAlert
+                case .emptyState:
+                    self?.state = .networkError
+                case .alertDeletion:
+                    self?.state = .networkErrorAlertDeletion
+                case .none:
+                    break
                 }
             }
             .store(in: &cancellables)
@@ -117,14 +128,14 @@ class HomeViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
                 if isLoading {
-                   self?.state = .loading
+                    self?.state = .loading
                 } else {
                     self?.refreshControl.endRefreshing()
                 }
             }
             .store(in: &cancellables)
         
-       viewModel.dataChanged
+        viewModel.dataChanged
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 if self?.searchController.isActive == true {
@@ -137,17 +148,17 @@ class HomeViewController: UIViewController {
             .store(in: &cancellables)
         
         viewModel.dataUpdated
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] _ in
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
                 self?.state = .editingEnabled
-             }
-             .store(in: &cancellables)
+            }
+            .store(in: &cancellables)
     }
     
     //MARK: - ViewModel Data Setup
     @objc private func fetchData() {
         viewModel.fetchData()
-     }
+    }
     
     //MARK: - State changes
     
@@ -204,8 +215,12 @@ class HomeViewController: UIViewController {
             navigationItem.leftBarButtonItem =  doneBtn
             navigationItem.rightBarButtonItem =  selectAllBtn
             toolBar.state = .deleteAndShare
+            
+        case .networkErrorAlert, .networkErrorAlertDeletion:
+            presentNetworkErrorAlert()
+            
         }
-
+        
     }
     
     @objc func changeStateToNormal() {
@@ -263,6 +278,39 @@ class HomeViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
+    func presentNetworkErrorAlert() {
+        
+        var title: String = ""
+        
+        if state == .networkErrorAlert {
+            title = Language.Main.errorUpdatingValue.localizedValue + " to 1"
+        } else if state == .networkErrorAlertDeletion {
+            title = "Couldn’t delete the counter “\(self.counterToUpdate?.title ?? "")”"
+        }
+        
+        
+        let actionSheet = UIAlertController(title: title,
+                                            message: Language.Main.errorInternetConnection.localizedValue,
+                                            preferredStyle: .alert)
+        let action = UIAlertAction(title: Language.Main.retry.localizedValue,
+                                   style: .default) { _ in
+            guard let counter = self.counterToUpdate else { return }
+            if self.state == .networkErrorAlert {
+                self.viewModel.updateCounterValue(counter: counter,
+                                                  newValue: self.valueToUpdateCounter)
+            } else if self.state == .networkErrorAlertDeletion {
+                self.viewModel.deleteCounter(counter: counter)
+            }
+        }
+        actionSheet.addAction(action)
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel) { _ in
+            self.state = .networkError
+        })
+        actionSheet.view.tintColor = UIColor.Pallete.tintColor
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - UITableViewDataSource & UITableViewDelegate
@@ -310,7 +358,9 @@ extension HomeViewController: CounterTableViewCellDelegate {
     }
     
     func counterValueDidUpdate(counter: Counter, newValue: Int) {
-        viewModel.updateCounterValue(counter: counter, newValue: newValue)
+        valueToUpdateCounter = newValue
+        counterToUpdate = counter
+        viewModel.updateCounterValue(counter: counter, newValue: valueToUpdateCounter)
     }
 }
 

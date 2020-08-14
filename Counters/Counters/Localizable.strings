@@ -26,7 +26,7 @@
 "main.retry" = "Retry";
 "main.errorNoCountersYet" = "No counters yet";
 "main.errorNoCountersYetDescription" = "“When I started counting my blessings, my whole life turned around.”\n—Willie Nelson";
-"main.errorUpdatingValue" = "Couldn’t update the “Apples eaten” counter to 1";
+"main.errorUpdatingValue" = "Couldn’t update the counter to 1";
 "main.createACounter" = "Create a counter";
 "main.cancel" = "Cancel";
 "main.done" = "Done";

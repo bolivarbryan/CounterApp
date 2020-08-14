@@ -294,6 +294,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 extension HomeViewController: EmptyStateDelegate {
     func didSelectActionButton() {
         if state == .networkError {
+            state = .loading
             fetchData()
         } else if state == .emptyState {
             didSelectAdd()
@@ -318,11 +319,13 @@ extension HomeViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         state = searchController.isActive ? .searching : .normal
         viewModel.filterCounters(text: searchController.searchBar.text ?? "")
-        tableView.reloadData()
         
-        if viewModel.filteredSearchResults.isEmpty {
+        if state == .normal &&  viewModel.filteredSearchResults.isEmpty {
+            state = .emptyState
+        } else if state == .searching  && viewModel.filteredSearchResults.isEmpty {
             state = .searchWithoutResults
         }
+        tableView.reloadData()
     }
 }
 

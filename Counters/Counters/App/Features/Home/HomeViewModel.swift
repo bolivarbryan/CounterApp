@@ -132,6 +132,7 @@ class HomeViewModel {
     }
     
     func fetchData() {
+        error = nil
         isLoading = true
         let countersPub = api.countersPublisher()
             .catch { error -> AnyPublisher<[Counter], Never> in

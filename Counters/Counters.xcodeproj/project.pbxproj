@@ -275,9 +275,9 @@
 		6162D0EE24E1039300E49B45 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				61204D1C24E15145004B4FA4 /* Components */,
 				61A12D9B24E6A7C60037DCA4 /* ExampleCounter */,
 				61A12D9424E699230037DCA4 /* AddCounter */,
-				61204D1C24E15145004B4FA4 /* Components */,
 				61B874F024E1330D00AB845A /* Home */,
 				6162D0EF24E1039900E49B45 /* Welcome */,
 			);

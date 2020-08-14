@@ -8,7 +8,7 @@ class HomeViewModel {
     var searchText: String = ""
     private(set) var dataChanged = PassthroughSubject<Void, Never>()
     private(set) var dataUpdated = PassthroughSubject<Void, Never>()
-
+    
     enum NetworkErrorType {
         case alert
         case alertDeletion
@@ -38,6 +38,12 @@ class HomeViewModel {
         filteredSearchResults
             .map(\.count)
             .reduce(0, +)
+    }
+    
+    var countersWithQuantity: [String] {
+        return Array<Counter>(selectedCounters).map {
+            "\($0.count) x \($0.title)"
+        }
     }
     
     func filterCounters(text: String) {

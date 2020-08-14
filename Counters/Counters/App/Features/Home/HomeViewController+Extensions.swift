@@ -80,7 +80,7 @@ extension HomeViewController: CounterToolBarDelegate {
     }
     
     func didSelectShare() {
-        print("share")
+        shareCounters()
     }
 }
 
@@ -130,5 +130,11 @@ extension HomeViewController {
         
         actionSheet.view.tintColor = UIColor.Pallete.tintColor
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    func shareCounters() {
+        let ac = UIActivityViewController(activityItems: viewModel.countersWithQuantity, applicationActivities: nil)
+        present(ac, animated: true)
     }
 }

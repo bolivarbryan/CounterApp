@@ -1,5 +1,6 @@
 import UIKit
 import Components
+import Combine
 
 class AddCounterViewController: UIViewController {
     enum State {
@@ -12,6 +13,7 @@ class AddCounterViewController: UIViewController {
     @IBOutlet weak var counterNameTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var seeExamplesButton: UIButton!
+    private var cancellables = Set<AnyCancellable>()
     
     var viewModel = AddCounterViewModel()
     var cancelButton: UIBarButtonItem {
@@ -100,13 +102,28 @@ class AddCounterViewController: UIViewController {
             return
         }
         self.state = .saving
-        viewModel.saveCounter(title: text) { success in
-            if success {
-                self.goBackToPreviousScreen()
-            } else {
-                self.state = .error
+        
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                   self?.state = .saving
+                } else {
+                   self?.state = .content
+                }
             }
-        }
+            .store(in: &cancellables)
+        
+       viewModel.dataChanged
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.goBackToPreviousScreen()
+            }
+            .store(in: &cancellables)
+        
+
+        
+        viewModel.saveCounter(title: text)
     }
 
     

@@ -2,7 +2,7 @@ import UIKit
 import Components
 
 protocol CounterTableViewCellDelegate {
-    func counterValueDidUpdate(counter: Counter)
+    func counterValueDidUpdate(counter: Counter, newValue: Int)
     func toggleCounterSelection(counter: Counter)
 }
 
@@ -22,10 +22,10 @@ class CounterTableViewCell: UITableViewCell {
                 return
             }
             
-            countLabel.text = String(counter.value)
+            countLabel.text = String(counter.count)
             nameLabel.text = counter.title
-            countLabel.configureAsCellLargeTitle(enabled: counter.value > 0)
-            stepper.value = Double(counter.value)
+            countLabel.configureAsCellLargeTitle(enabled: counter.count > 0)
+            stepper.value = Double(counter.count)
         }
     }
     
@@ -62,10 +62,11 @@ class CounterTableViewCell: UITableViewCell {
     
     
     @IBAction func updateCounterValue(_ sender: UIStepper) {
+        sender.isEnabled = false
         guard let counter = counter else { return }
-        counter.value = Int(sender.value)
-        delegate?.counterValueDidUpdate(counter: counter)
-        self.counter = counter
+//        counter.count = Int(sender.value)
+        delegate?.counterValueDidUpdate(counter: counter, newValue: Int(sender.value) - counter.count)
+//        self.counter = counter
     }
     
     @IBAction func toggleCounterSelection(_ sender: UIStepper) {

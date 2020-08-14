@@ -1,9 +1,30 @@
 import Foundation
+import Combine
 
 class AddCounterViewModel {
     
-    func saveCounter(title: String, completion: @escaping (Bool) -> ()) {
-        let counter = Counter(id: 1000, title: title)
-        completion(false)
+    private(set) var dataChanged = PassthroughSubject<Void, Never>()
+
+    @Published
+    var isLoading = false
+    
+    private let api = CounterAPI()
+    private var cancellables = Set<AnyCancellable>()
+    
+    func saveCounter(title: String) {
+        let countersPub = api.createCounterPublisher(title: title)
+            .catch { error -> AnyPublisher<[Counter], Never> in
+                print("Error Deleting counter: \(error)")
+                return Just([]).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+
+        countersPub
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { _ in
+                self.isLoading = false
+                self.dataChanged.send()
+            })
+            .store(in: &cancellables)
     }
 }

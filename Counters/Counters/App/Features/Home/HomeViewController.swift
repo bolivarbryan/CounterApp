@@ -7,6 +7,7 @@
 
 import UIKit
 import Components
+import Combine
 
 class HomeViewController: UIViewController {
     
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController {
     }
     
     let viewModel: HomeViewModel = HomeViewModel()
+    private var cancellables = Set<AnyCancellable>()
     let emptyStateView = EmptyStateViewController(nibName: "EmptyStateView", bundle: nil)
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -61,10 +63,9 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.loadData {
-            self.state = .normal
-        }
+        state = .loading
         configureNavigationBar()
+        fetchData()
     }
     
     var editBtn: UIBarButtonItem {
@@ -86,6 +87,29 @@ class HomeViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(selectAllCounters))
     }
+    
+    //MARK: - ViewModel Data Setup
+    private func fetchData() {
+         viewModel.$isLoading
+             .receive(on: DispatchQueue.main)
+             .sink { [weak self] isLoading in
+                 if isLoading {
+                    self?.state = .loading
+                 } else {
+                    self?.state = .normal
+                 }
+             }
+             .store(in: &cancellables)
+         
+        viewModel.dataChanged
+             .receive(on: DispatchQueue.main)
+             .sink { [weak self] _ in
+                self?.state = .normal
+             }
+             .store(in: &cancellables)
+         
+        viewModel.fetchData()
+     }
     
     //MARK: - State changes
     
@@ -205,6 +229,7 @@ class HomeViewController: UIViewController {
         actionSheet.view.tintColor = UIColor.Pallete.tintColor
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
 }
 
 //MARK: - UITableViewDataSource & UITableViewDelegate
@@ -235,19 +260,23 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 //MARK: - EmptyStateDelegate
 extension HomeViewController: EmptyStateDelegate {
     func didSelectActionButton() {
-        state = .networkError
+        if state == .networkError {
+            state = .loading
+        } else if state == .emptyState {
+            didSelectAdd()
+        }
     }
 }
 
 //MARK: - CounterTableViewCellDelegate
-extension HomeViewController: CounterTableViewCellDelegate {
+extension HomeViewController: CounterTableViewCellDelegate {    
     func toggleCounterSelection(counter: Counter) {
         viewModel.toggleCounterSelection(counter: counter)
         state = .editingEnabled
     }
     
-    func counterValueDidUpdate(counter: Counter) {
-        viewModel.updateCounterValue(counter: counter)
+    func counterValueDidUpdate(counter: Counter, newValue: Int) {
+        viewModel.updateCounterValue(counter: counter, newValue: newValue)
         configureScreenForState()
     }
 }

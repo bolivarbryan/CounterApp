@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Counter: Equatable, Hashable {
+class Counter: Equatable, Codable, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -17,13 +17,13 @@ class Counter: Equatable, Hashable {
         lhs.title == rhs.title
     }
     
-    var id: Int
+    var id: String
     var title: String
-    var value: Int
+    var count: Int
     
-    init(id: Int, title: String = "", value: Int = 0) {
-        self.id = id
-        self.title = title
-        self.value = value
-    }
+//    init(id: String, title: String = "", value: Int = 0) {
+//        self.id = id
+//        self.title = title
+//        self.value = value
+//    }
 }

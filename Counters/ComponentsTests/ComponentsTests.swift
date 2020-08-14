@@ -22,7 +22,7 @@ class ComponentsTests: XCTestCase {
         XCTAssertEqual(Image.circle.imageRepresentation, UIImage(systemName: "circle"))
         XCTAssertEqual(Image.minus.imageRepresentation, UIImage(systemName: "minus"))
         XCTAssertEqual(Image.plus.imageRepresentation, UIImage(systemName: "plus"))
-        XCTAssertEqual(Image.circleCheckMark.imageRepresentation, UIImage(systemName: "checkmark.circle"))
+        XCTAssertEqual(Image.circleCheckMark.imageRepresentation, UIImage(systemName: "checkmark.circle.fill"))
     }
     
     func testImageLocalization_ShouldLocalizeNumberWithCircle() {

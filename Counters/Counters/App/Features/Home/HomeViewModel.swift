@@ -57,7 +57,7 @@ class HomeViewModel {
     
     func loadData(completion: @escaping  () -> ()) {
         datasource = (0...9).map {
-            Counter(id: $0, title: "Item \($0)", value: $0)
+            Counter(id: $0, title: "In a storyboard-based application, you will often want to do a little preparation before navigation \($0)", value: $0)
         }
                 
         filteredSearchResults = datasource

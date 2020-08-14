@@ -56,8 +56,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cups of coffee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAV-fy-UEm">
-                                                                    <rect key="frame" x="71" y="16" width="270" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cups of coffee" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAV-fy-UEm">
+                                                                    <rect key="frame" x="71" y="16" width="270" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -86,8 +86,8 @@
                                                                 <constraint firstItem="El0-Kb-J6i" firstAttribute="leading" secondItem="jeY-B9-Lj5" secondAttribute="leading" constant="59" id="RgT-nO-M6q"/>
                                                                 <constraint firstAttribute="trailing" secondItem="VAV-fy-UEm" secondAttribute="trailing" constant="10" id="cnk-Ft-TSf"/>
                                                                 <constraint firstItem="El0-Kb-J6i" firstAttribute="leading" secondItem="20Q-9A-lwR" secondAttribute="trailing" constant="15.5" id="jPA-sQ-zdd"/>
+                                                                <constraint firstItem="dOU-mv-KJ0" firstAttribute="top" secondItem="VAV-fy-UEm" secondAttribute="bottom" constant="19.5" id="kOu-Az-ih4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="dOU-mv-KJ0" secondAttribute="trailing" constant="8" id="rYU-DJ-n6v"/>
-                                                                <constraint firstAttribute="height" constant="96" id="uy7-zp-YGp"/>
                                                                 <constraint firstItem="20Q-9A-lwR" firstAttribute="top" secondItem="jeY-B9-Lj5" secondAttribute="top" constant="15" id="wGR-zN-7lA"/>
                                                                 <constraint firstItem="El0-Kb-J6i" firstAttribute="top" secondItem="jeY-B9-Lj5" secondAttribute="top" id="wRY-8e-w0Z"/>
                                                             </constraints>
